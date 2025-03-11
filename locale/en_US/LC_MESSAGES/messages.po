@@ -1,0 +1,1481 @@
+# French translations for PACKAGE package.
+# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-29 11:44+0200\n"
+"PO-Revision-Date: 2017-12-20 16:50+0100\n"
+"Last-Translator: EMAIL@ADDRESS\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: //////////////////////////////////  index  //////////////////////////////////
+msgid "index_connect"
+msgstr "Connect"
+
+msgid "index_nomutilisateur"
+msgstr "Username"
+
+msgid "index_motdepasse"
+msgstr "Password"
+
+#: //////////////////////////////////  layout  //////////////////////////////////
+msgid "layout_client"
+msgstr "Customer"
+
+msgid "layout_allclient"
+msgstr "[ALL CUSTOMER]"
+
+msgid "layout_groupebalise"
+msgstr "Tracker Group"
+
+msgid "layout_allgroups"
+msgstr "[ALL GROUPS]"
+
+msgid "layout_listbalise"
+msgstr "Tracker List"
+
+msgid "layout_toutcocher"
+msgstr "Check all"
+
+msgid "layout_toutdecocher"
+msgstr "Uncheck all"
+
+msgid "layout_modesuivi"
+msgstr "On Tracking"
+
+msgid "layout_infotrafic"
+msgstr "Infotraffic"
+
+msgid "layout_geofencing"
+msgstr "with Geofencing"
+
+msgid "layout_derniereposition"
+msgstr "Last Position"
+
+msgid "layout_cartoposition"
+msgstr "Map of Position"
+
+msgid "layout_rapport"
+msgstr "Report"
+
+msgid "layout_etatbalise"
+msgstr "Tracker Information"
+
+msgid "layout_deconnexion"
+msgstr "Disconnect"
+
+msgid "layout_pointinteret"
+msgstr "Point of Interest"
+
+#: //////////////////////////////////  rapport  //////////////////////////////////
+msgid "rapport_rapportinstant"
+msgstr "Instant Report"
+
+msgid "rapport_choisirformat"
+msgstr "Select the report's format"
+
+msgid "rapport_contenurapport"
+msgstr "Configure the report's content"
+
+msgid "rapport_convertir"
+msgstr "Convert"
+
+msgid "rapport_etape"
+msgstr "Steps"
+
+msgid "rapport_lieu"
+msgstr "Place"
+
+msgid "rapport_gaznaturel"
+msgstr "Natural Gas"
+
+msgid "rapport_gazole"
+msgstr "Diesel oil"
+
+msgid "rapport_enregistrer_carburant"
+msgstr "Enregistrer"
+
+msgid "rapport_retour"
+msgstr "Back"
+
+msgid "rapport_pasdetrajetintervalle"
+msgstr "No route in this interval of time"
+
+msgid "rapport_litredecarburants100km"
+msgstr "Liters of fuels / 100 km"
+
+msgid "rapport_modifierinfoscarburants"
+msgstr "Modify fuels infos"
+
+msgid "rapport_supprimerinfoscarburants"
+msgstr "Delete fuels infos"
+
+msgid "rapport_saisirlitreintervalle"
+msgstr "(Optional) Set the total liter of fuels consumed according to the interval of time"
+
+msgid "rapport_graphevitesse"
+msgstr "Speed Graph"
+
+msgid "rapport_generersurintervalle"
+msgstr "Generate the report on time's interval"
+
+msgid "rapport_veuillezselecttypecarburant"
+msgstr "Please select a type of fuel"
+
+msgid "rapport_saisirvaleurlitrecarburant100km"
+msgstr "Please seize a value for: liters of fuel / 100 km"
+
+msgid "rapport_consocarburant"
+msgstr "Fuel consumption"
+
+msgid "rapport_typedecarburants"
+msgstr "Type of fuel"
+
+msgid "rapport_litrekm"
+msgstr "Liters / km"
+
+msgid "rapport_litre100km"
+msgstr "Liters / 100km"
+
+msgid "rapport_emissionco2"
+msgstr "CO2 Emission"
+
+msgid "rapport_litreconsommes"
+msgstr "Consummate liters"
+
+msgid "rapport_confirmmodifcarburant"
+msgstr "The fuel and the liter by 100km were well modified for"
+
+msgid "rapport_confirmcreercarburant"
+msgstr "The fuel and the liter by 100km were well created for"
+
+msgid "rapport_confirmsupprimercarburant"
+msgstr "The fuel and the liter by 100km were well deleted for"
+
+msgid "rapport_genererrapport"
+msgstr "Generate Report"
+
+msgid "rapport_contenuetape"
+msgstr "Configure the report - steps"
+
+msgid "rapport_aveccarto"
+msgstr "With Map"
+
+msgid "rapport_genereretapesurintervalle"
+msgstr "Generate report of this step"
+
+msgid "rapport_genereretape"
+msgstr "Generate Step"
+
+msgid "rapport_rapportauto"
+msgstr "Automatic Report"
+
+msgid "rapport_creernouveau"
+msgstr "Create a new report"
+
+msgid "rapport_modifierrapport"
+msgstr "Modify the automatic reports"
+
+msgid "rapport_jourenvoi"
+msgstr "Day send"
+
+msgid "rapport_choisirtype"
+msgstr "Select the type of automatic report"
+
+msgid "rapport_objetmessage"
+msgstr "Set/modify the object and the sending message"
+
+msgid "rapport_objet"
+msgstr "Object"
+
+msgid "rapport_choisirdateheure"
+msgstr "Set/Modify the date or the hour of the next delivery"
+
+msgid "rapport_prochainenvoi"
+msgstr "Next Delivery"
+
+msgid "rapport_choisirformatauto"
+msgstr "Set/modify the report's format"
+
+msgid "rapport_enligne"
+msgstr "On-line"
+
+msgid "rapport_choisirdestinataire"
+msgstr "Set/modify the automatic report's address"
+
+msgid "rapport_supprimer"
+msgstr "Delete Report"
+
+msgid "rapport_enregistrer"
+msgstr "Save Report"
+
+msgid "rapport_choisirtypeselect"
+msgstr "Select a type"
+
+msgid "rapport_unefois"
+msgstr "One time"
+
+msgid "rapport_journalier"
+msgstr "Daily"
+
+msgid "rapport_journalierplus"
+msgstr "Daily+"
+
+msgid "rapport_hebdomadaire"
+msgstr "Weekly"
+
+msgid "rapport_hebdomadaireplus"
+msgstr "Weekly+"
+
+msgid "rapport_mensuel"
+msgstr "Monthly"
+
+msgid "rapport_mensuelplus"
+msgstr "Monthly+"
+
+msgid "rapport_alert_pasdetape"
+msgstr "There aren't any steps over the period which you chose"
+
+msgid "rapport_alert_changerheure"
+msgstr "Only change hours"
+
+msgid "rapport_alert_pasrapportauto"
+msgstr "There are still no automatic reports"
+
+msgid "rapport_alert_changerheuredate"
+msgstr "Only change hours, he date is modifiable via the next delivery"
+
+msgid "rapport_alert_supprimer"
+msgstr "has been removed"
+
+msgid "rapport_alert_modifier"
+msgstr "The automatic report has been well modified for"
+
+msgid "rapport_alert_creer"
+msgstr "The automatic report has been well created for"
+
+msgid "rapport_pasencoreenregistrer"
+msgstr "wasn't registered yet"
+
+msgid "rapport_dernierjourdumois"
+msgstr "The last day of this month is"
+
+msgid "rapport_alert_excel_multiple"
+msgstr "To export the report under format Excel or on-line, tables steps and stops will be separately drafted. Thank you for choosing, either the report of the stages, or the report of stops"
+
+msgid "rapport_alert_excel_pdf"
+msgstr "The speed graph can only be drafted under format PDF"
+
+msgid "rapport_confirm_supprimer"
+msgstr "Really want to delete this automatic report"
+
+msgid "rapport_confirm_enregistrer"
+msgstr "Really want to create this automatic report"
+
+msgid "rapport_confirm_warningallbalises"
+msgstr "WARNING: this automatic report will be registered for all the selected trackers"
+
+msgid "rapport_periodeentre"
+msgstr "Period between"
+
+msgid "rapport_informationbalise"
+msgstr "Trackers informations"
+
+msgid "rapport_resumeetape"
+msgstr "Steps summary"
+
+msgid "rapport_resumearret"
+msgstr "Stops summary"
+
+msgid "rapport_resumeadresse"
+msgstr "Address summary"
+
+msgid "rapport_resumegraphevitesse"
+msgstr "Speed graph on travels period"
+
+msgid "rapport_et"
+msgstr "and"
+
+msgid "rapport_dureedestrajets"
+msgstr "Travel Time"
+
+msgid "rapport_dureedesarrets"
+msgstr "Stop Time"
+
+msgid "rapport_kmsparcourus"
+msgstr "Traveled km"
+
+msgid "rapport_nombrepositions"
+msgstr "Number of positions"
+
+msgid "rapport_nombreetapes"
+msgstr "Number of steps"
+
+msgid "rapport_datedebut"
+msgstr "Start Date"
+
+msgid "rapport_datefin"
+msgstr "End Date"
+
+msgid "rapport_lieudebut"
+msgstr "Start Place"
+
+msgid "rapport_lieufin"
+msgstr "End Place"
+
+msgid "rapport_dureetrajet"
+msgstr "Travel Time"
+
+msgid "rapport_dureearret"
+msgstr "Stop Time"
+
+msgid "rapport_lieustop"
+msgstr "Stop Place"
+
+msgid "rapport_commentaire"
+msgstr "Comment"
+
+msgid "rapport_rapportgeo3x"
+msgstr "Geofence Report"
+
+msgid "rapport_informationetape"
+msgstr "Informations in step"
+
+msgid "rapport_cartosurletape"
+msgstr "Carto in step"
+
+msgid "rapport_graphevitessesurletape"
+msgstr "Speed Graph in step"
+
+msgid "rapport_modaltitre_rapportadresse"
+msgstr "Addresses Report"
+
+msgid "rapport_modalcontenu1_rapportadresse"
+msgstr "Report detailing the places where the tracker moved."
+
+msgid "rapport_modalremarque1_rapportadresse"
+msgstr "The load of the addresses sets a lot of time (up to a few minutes)."
+
+msgid "rapport_modalremarque2_rapportadresse"
+msgstr "If the number of positions to be converted in address is upper to 100, we should redo the report in several times. In this case, It is recommended to confide to the automatic report (type report \"one time\") to receive it by e-mail quietly."
+
+msgid "rapport_modaltitre_genererrapport"
+msgstr "Generate the report on an interval of time"
+
+msgid "rapport_modalcontenu1_genererrapport"
+msgstr "Allows to create the report which contains the curve of speed, the stages and stops, according to your choice (checked/unchecked above)"
+
+msgid "rapport_modalremarque1_genererrapport"
+msgstr "You can choose various types of exported, safe report the curve of speed must be drafted under format pdf. For the good visibility, if you export the report under format Excel or on-line, the table of the stages and the table of stops cannot be in the same report. It is necessary to make him twice"
+
+msgid "rapport_modaltitre_genererrapportetape"
+msgstr "Generate the report on every stage"
+
+msgid "rapport_modalcontenu1_genererrapportetape"
+msgstr "Having generated the general report, you can make a report on a stage in the list above (includes the carto and/or the graph speed)"
+
+msgid "rapport_modaltitre_rapportauto"
+msgstr "Generate the automatic report"
+
+msgid "rapport_modalcontenu1_rapportauto"
+msgstr "Allows to create the automatic report which contains the stages, the stops and the graph speed. It will be sent according to enamels and at the time of delivery informed. There are 4 types (and 3 extensions type \"+\") of automatic report"
+
+msgid "rapport_modalcontenu2_rapportauto"
+msgstr "One time: as the instant report; (traditional), we have to choose an interval of time as the contents of the report. The dispatch date of the current year must be also specified."
+
+msgid "rapport_modalcontenu3_rapportauto"
+msgstr "Daily: we shall receive every day the e-mail containing a report(relationship) enter \" the Hour at the beginning \" and \" the Hour at the end \" of the day (that you can modify)"
+
+msgid "rapport_modalcontenu4_rapportauto"
+msgstr "Weekly: the contents of the report contain the event enter \" in the daytime between the beginning day \" and \" end day \" (modifiable from Monday till Sunday)."
+
+msgid "rapport_modalcontenu5_rapportauto"
+msgstr "Monthly  if \" end day \" is 31 of the month, the report will be sent to the end of the month about that is its day number (28, 29 or 30)."
+
+msgid "rapport_modalremarque1_rapportauto"
+msgstr "For the daily report, it is necessary to specify the hour of delivery. For the weekly and monthly report, it is necessary to choose the day of delivery. By default, it will be on Sunday (weekly) and the end of the month (monthly)"
+
+msgid "rapport_modalremarque2_rapportauto"
+msgstr "Report(Relationship) \" daily+\", \" weekly+ \" and \" monthly+\" allow to exceed) the current period (extended report). For example, for the report(relationship) \" weekly+ \", we shall so have the possiblité to summarize the events from Tuesday of the current week till Tuesday of (it) weekly+1. Of the blow you will also receive reports() at the moment informed by period+1. "
+
+msgid "rapport_modaltitre_rapportautoprochainenvoi"
+msgstr "Generate the automatic report: Next Delivery"
+
+msgid "rapport_modalcontenu1_rapportautoprochainenvoi"
+msgstr "For the daily, weekly and monthly report, the hour of \" Next Delivery \" is modifiable but not the date."
+
+msgid "rapport_modalcontenu2_rapportautoprochainenvoi"
+msgstr "The date of the next delivery changes according to \" in the daytime of delivery \" "
+
+msgid "rapport_supprimerinfoscarburant"
+msgstr "Do you really want to delete the information fuels for the tracker"
+
+#: //////////////////////////////////  Geofencing  //////////////////////////////////
+msgid "geofencing_parametre"
+msgstr "Setting"
+
+msgid "geofencing_fichierlog"
+msgstr "Log File"
+
+msgid "geofencing_choisirnumerozone"
+msgstr "Choose zone n&deg;"
+
+msgid "geofencing_toutes"
+msgstr "All"
+
+msgid "tout"
+msgstr "All"
+
+msgid "geofencing_adresseapproxizone"
+msgstr "To search an address click on the magnifier icon on map"
+
+msgid "geofencing_cliquersurcartopolygone"
+msgstr "Click the carto to have various points of the polygon"
+
+msgid "geofencing_warningpolygonelarge"
+msgstr "Warning ! The polygon must be wide enough"
+
+msgid "geofencing_messageentree"
+msgstr "Entry message"
+
+msgid "geofencing_messagesortie"
+msgstr "Exit message"
+
+msgid "geofencing_alerteentree"
+msgstr "Alert entry zone"
+
+msgid "geofencing_alertefin"
+msgstr "Alert exit zone"
+
+msgid "geofencing_entree"
+msgstr "Entrance"
+
+msgid "geofencing_sortie"
+msgstr "Exit"
+
+msgid "geofencing_supprimerzone"
+msgstr "Delete zone"
+
+msgid "geofencing_validerzone"
+msgstr "Confirm zone"
+
+msgid "geofencing_alert_choisirzoneprecise"
+msgstr "It is necessary to choose at first a precise zone"
+
+msgid "geofencing_alert_endroitapproxi"
+msgstr "Approximate place or you go to define the zone"
+
+msgid "geofencing_alert_effacerzone"
+msgstr "You delete well the zone"
+
+msgid "geofencing_alert_warningmultiplebalises"
+msgstr "WARNING! All the selected trackers are going to be modify"
+
+msgid "geofencing_alert_fermerpolycone"
+msgstr "Please close the polygon before validating the zone"
+
+msgid "geofencing_alert_redefinirlazone"
+msgstr "To redefine the zone (at least 3 necessary positions)"
+
+msgid "geofencing_alert_balisebienconfig"
+msgstr "You configured well the geofencing"
+
+msgid "geofencing_modaletitle_activealarme"
+msgstr "Alarm Activation"
+
+msgid "geofencing_modalecontenu_activealarme"
+msgstr "To use the alarm, check the box. If the alarm is not any more used, to shoot the compartment"
+
+msgid "geofencing_modaletitle_alert"
+msgstr "Alert Message"
+
+msgid "geofencing_modalecontenu1_alert"
+msgstr "Personalize the warning message of appearance (30 characters max)"
+
+msgid "geofencing_modalecontenu2_alert"
+msgstr "And/or personalize the warning message of disappearance (30 characters max)."
+
+msgid "geofencing_modifierzonedejatracee"
+msgstr "Do you really want to modify the zone already drawn previously?"
+
+msgid "geofencing_choissirdabordzone"
+msgstr "Choose a zone at first"
+
+msgid "geofencing_veuillezfermerpolygone"
+msgstr "Please close the polygon before validating the zone."
+
+msgid "geofencing_saisirmessageentreesortie"
+msgstr "You have not set the entry et exit message for the geofencing yet"
+
+msgid "geofencing_resetgeofencing"
+msgstr "Reset: your geofencing new of the zone will be erased"
+
+msgid "geofencing_voulezvoussupprimerzone"
+msgstr "Do you really want to delete the zone"
+
+msgid "geofencing_voulezvouscreermodifierzone"
+msgstr "Do you really want create/to modify the zone"
+
+msgid "geofencing_fermerpolygone"
+msgstr "Close the polygon"
+
+msgid "geofencing_warningmultiplebalise"
+msgstr "WARNING! All the selected trackers are going to be modified"
+
+#: //////////////////////////////////  POINT INTERET  //////////////////////////////////
+msgid "ptinteret_insererptinteret"
+msgstr "Insert one point of interest"
+
+msgid "ptinteret_soitsaisiradresse"
+msgstr "By setting an address postal"
+
+msgid "ptinteret_soitcliquer"
+msgstr "By clicking the card(map), positioning your point of interest"
+
+msgid "ptinteret_visualiser"
+msgstr "Visualize"
+
+msgid "ptinteret_visualiserunpoi"
+msgstr "Visualize a POI by clicking on table positions."
+
+msgid "ptinteret_messagearrive"
+msgstr "Arrival Message"
+
+msgid "ptinteret_messagedepart"
+msgstr "Departure Message"
+
+msgid "ptinteret_alertearrivee"
+msgstr "Alert arrival zone"
+
+msgid "ptinteret_alertedepart"
+msgstr "Alert departure zone"
+
+msgid "ptinteret_arrive"
+msgstr "Arrival"
+
+msgid "ptinteret_depart"
+msgstr "Departure"
+
+msgid "ptinteret_nompoi"
+msgstr "Name POI"
+
+msgid "ptinteret_rayon"
+msgstr "Radius"
+
+msgid "ptinteret_confirmvaliderconfigpoi"
+msgstr "You configured well the poi"
+
+msgid "ptinteret_pourlabalise"
+msgstr "for the tracker"
+
+msgid "ptinteret_veuillezchoisirunpoi"
+msgstr "Please choose a POI via the Table of the positions"
+
+msgid "ptinteret_passaisiadressepostale"
+msgstr "You did not set a postal address"
+
+msgid "ptinteret_inserernouveaupoi"
+msgstr "Do you really want to insert a new POI"
+
+msgid "ptinteret_adressepostale"
+msgstr "Postal address"
+
+msgid "ptinteret_rayonconsideration"
+msgstr "Radius consideration"
+
+msgid "ptinteret_htmlurl"
+msgstr "Html link or url image"
+
+msgid "ptinteret_enregistrerpoi"
+msgstr "Register the POI"
+
+msgid "ptinteret_modifierconfiguration"
+msgstr "Do you really want to modify the configuration of warning messages to"
+
+msgid "ptinteret_supprimerpoi"
+msgstr "Do you really want to delete this POI"
+
+msgid "ptinteret_saisirmessagearriveedepart"
+msgstr "You have not set the arrival and departure message"
+
+#: //////////////////////////////////  Configuration  //////////////////////////////////
+msgid "configuration_parametresavances"
+msgstr "Advanced Settings"
+
+msgid "configuration_modefonctionnementtempsreel"
+msgstr "Operating mode / Real time"
+
+msgid "configuration_detectpdeplacementarret"
+msgstr "Detection travel / stop"
+
+msgid "configuration_alerteetsms"
+msgstr "Alert and SMS"
+
+msgid "configuration_lectureparametrebalise"
+msgstr "Reading tracker's Setting"
+
+msgid "configuration_freqacquiposition"
+msgstr "Frequency acquisition of the positions"
+
+msgid "configuration_freqrapatriposition"
+msgstr "Frequency repatriation of the positions"
+
+msgid "configuration_alarret"
+msgstr "In stop"
+
+msgid "configuration_entiming"
+msgstr "In timing"
+
+msgid "configuration_tempsreelposition2sec"
+msgstr "Real time (position every 2 seconds)"
+
+msgid "configuration_immediatpendant"
+msgstr "Immediate during"
+
+msgid "configuration_surappelpendant"
+msgstr "On call during"
+
+msgid "configuration_audemarragependant"
+msgstr "In the initialization during"
+
+msgid "configuration_lire"
+msgstr "Read"
+
+msgid "configuration_modenormal"
+msgstr "Normal mode"
+
+msgid "configuration_modehistorique"
+msgstr "History mode"
+
+msgid "configuration_modeperiscope"
+msgstr "Periscope mode"
+
+msgid "configuration_modesilencieux"
+msgstr "Silent mode"
+
+msgid "configuration_surdeplacementdesactive"
+msgstr "On travel desactivate"
+
+msgid "configuration_surdeplacementactive"
+msgstr "On travel activate"
+
+msgid "configuration_parametredetectdeplacementarret"
+msgstr "Settings detection travel / stop"
+
+msgid "configuration_deplacementseuilvitesse"
+msgstr "Detection travel (Speed threshold)"
+
+msgid "configuration_deplacementtempsvib"
+msgstr "Detection travel (time VIB)"
+
+msgid "configuration_deplacementtempsabscencevib"
+msgstr "Detection stop (time off VIB)"
+
+msgid "configuration_alert"
+msgstr "Alert"
+
+msgid "configuration_alarme"
+msgstr "Alarm"
+
+msgid "configuration_alarmedeplacement"
+msgstr "Travel Alarm "
+
+msgid "configuration_alarmealimentation"
+msgstr "Supply Alarm"
+
+msgid "configuration_alarmeparking"
+msgstr "Parking Alarm"
+
+msgid "configuration_alarmebatterie"
+msgstr "Battery Alarm"
+
+msgid "configuration_filtrage"
+msgstr "Filter"
+
+msgid "configuration_normalement"
+msgstr "Normally"
+
+msgid "configuration_ouvert"
+msgstr "Open"
+
+msgid "configuration_ferme"
+msgstr "Close"
+
+msgid "configuration_tempsreel"
+msgstr "Realtime"
+
+msgid "configuration_surdeplacement"
+msgstr "on Travel"
+
+msgid "configuration_survibration"
+msgstr "on Vibration"
+
+msgid "configuration_survitesse"
+msgstr "on Speed"
+
+msgid "configuration_seuildebat"
+msgstr "Batt. threshold"
+
+msgid "configuration_messageapparition"
+msgstr "Appearance Message"
+
+msgid "configuration_messagedisparition"
+msgstr "Disappearance Message"
+
+msgid "configuration_alertedesactivee"
+msgstr "Desactivate alert"
+
+msgid "configuration_alerteactivee"
+msgstr "Activate alert"
+
+msgid "configuration_telephone"
+msgstr "Phone"
+
+msgid "configuration_aucuntelvalide"
+msgstr "No phone numbers are valid"
+
+msgid "configuration_choisiralerte"
+msgstr "Please choose the type of alert to confirm"
+
+msgid "configuration_infostelephone"
+msgstr "These numbers are used by all the alarms of the tracker"
+
+msgid "configuration_confirmnumerotelephone"
+msgstr "Do you really want to modify the phone numbers?"
+
+msgid "configuration_attentionparamrapatriement"
+msgstr "ATTENTION! These Settings will be transmitted in the next positions repatriationof the tracker."
+
+msgid "configuration_bienenregistreparam"
+msgstr "You registered well the Settings for the tracker: "
+
+msgid "configuration_confirmmodifiermodedefonctionnement"
+msgstr "Do you really want to modify the operating mode of the tracker?"
+
+msgid "configuration_confirmmodifiertempsreel"
+msgstr "Do you really want to modify the realtime configuration of the tracker?"
+
+msgid "configuration_confirmetattempsreel"
+msgstr "Do you really want to activate/desactivate the realtime configuration of the tracker?"
+
+msgid "configuration_confirmemodifierdetectionbalise"
+msgstr "Do you really want to modify the Settings of detection of the tracker?"
+
+msgid "configuration_confirmemodifieralertebalise"
+msgstr "Do you really want to modify the alerts of the tracker?"
+
+msgid "configuration_modalecontenu1_parambalise"
+msgstr "Allows to ask the tracker to send all Settings of functioning and alarm to show them in this configuration panel"
+
+msgid "configuration_modalecontenu2_parambalise"
+msgstr "When the tracker answered this request, the hour of synchronization takes the hour of the answer made by the tracker and the Settings showed in this panel are updated with the returned values."
+
+msgid "configuration_modalecontenu1_dernieresynchro"
+msgstr "In the opening of the panel, the showed configuration is the one known about the date and the hour of showed synchronization."
+
+msgid "configuration_modalecontenu2_dernieresynchro"
+msgstr "If modifications are already awaiting sending towards the tracker, the Dispatch date is unknown (to click the button \"Log File\" for details)"
+
+msgid "configuration_modalecontenu1_fichierlog"
+msgstr "Allows to consult the orders or the sent Settings."
+
+msgid "configuration_modalecontenu2_fichierlog"
+msgstr "If modifications are already awaiting sending towards the tracker, the Dispatch date is unknown."
+
+msgid "configuration_modalecontenu1_modedefctmnt"
+msgstr ""
+"<b>Normal mode</b><br>"
+"This mode allows to make a follow-up distant or moved closer to the tracker following the Settings with a choice at the level of the functioning of the GSM.<br>"
+"Remarks:<br>"
+"The GSM can work in the choice following three modes:<br>"
+"Permanent: the GSM is maintained switched on permanently<br>"
+"Eco : In travveling, the GSM is switched on. At stop, it is switched off, it turns on that for the transmissions of positions or SMS of alarms.<br>"
+"Eco+ : The GSM turns on only at the time of passing on positions or SMS of alarm, this Setting is to be used only if the time between two sendings during the routes is enough long (upper or more equal at 5 minutes)<br>"
+"<br>"
+"<b>History mode</b><br>"
+"Allows to have the detail of the routes without ascents immediate to save the autonomy of the battery<br>"
+"Remarks:<br>"
+"GSM : Connects at the moments of the sendings of positions or SMS of alarms<br>"
+"<br>"
+"<b>Periscope mode</b><br>"
+"Allows a said functioning \"periscope\" (when a vehicle does not any more need to be watched) to have grips and spaced out ascents of points<br>"
+"Remarks:<br>"
+"GSM : Connects at the moments of the sendings of positions or SMS of alarms<br>"
+"Acquisition of the positions: is made according to times informed for the routes and the stops.<br>"
+"Repatriation of the positions: is made according to times informed for the routes and the stops"
+
+# Mode vitesse
+msgid "modevitesse"
+msgstr "Speed mode"
+
+msgid "modevitesse_activer"
+msgstr "Activate:"
+
+msgid "configuration_modalecontenu_modevitesse"
+msgstr "The speed mode lowers power consumption of tacker by reducing positions sendings."
+
+# Temps reel
+msgid "configuration_modalecontenu1_tempsreel"
+msgstr "Defines the Settings of the real-time mode. The real-time mode allows to have a position every two seconds with an immediate ascent of the position."
+
+msgid "configuration_modalecontenu2_tempsreel"
+msgstr "When the real time is active, the times of acquisition and repatriation defined are not any more respected unless the tracker comes to be disconnected from the waiter(server)."
+
+msgid "configuration_modalecontenu3_tempsreel"
+msgstr "When it finds its connection the real time starts again."
+
+msgid "configuration_modalecontenu4_tempsreel"
+msgstr "The real time is to be used in a necessary way. The large number of sendings of positions consumes of advantage of energy and fixed price GPRS"
+
+msgid "configuration_modalecontenu1_tempsreelimmediat"
+msgstr "This is an order to place the real time tracker for duration indicated in minutes. Once this ended duration the tracker returns to its normal functioning."
+
+msgid "configuration_modalecontenu2_tempsreelimmediat"
+msgstr "This order allows to have more positions in a punctual way. Before the sending of this order make sure that the tracker goes back up(raises) many positions at this moment."
+
+msgid "configuration_modalecontenu3_tempsreelimmediat"
+msgstr "The sending of an order of real time with as duration 0 mn is possible. He allows to stop a duration of real time thrown(launched) previously by the same order or by phone call."
+
+msgid "configuration_modalectitle_tempsreelsurappel"
+msgstr "Real time on call"
+
+msgid "configuration_modalecontenu1_tempsreelsurappel"
+msgstr "Duration of real time made after receipt of a telephone call. Once this ended duration, the tracker takes its normal functioning."
+
+msgid "configuration_modalecontenu2_tempsreelsurappel"
+msgstr "The sending of a order of real time with as duration 0 dry is possible. He allows to put never the real time tracker in the starting up of the tracker."
+
+msgid "configuration_modalectitle_tempsreelaudemarrage"
+msgstr "Real time in the starting up of the tracker"
+
+msgid "configuration_modalecontenu1_tempsreelaudemarrage"
+msgstr "Duration of real time made just after the switched on of the tracker. Once this ended duration, the tracker takes its normal functioning."
+
+msgid "configuration_modalecontenu2_tempsreelaudemarrage"
+msgstr "The sending of a order of real time with as duration 0 dry is possible. He allows to put never the real time tracker in the starting up of the tracker."
+
+msgid "configuration_modalectitle_tempsreelsurdeplacement"
+msgstr "Real time on travel"
+
+msgid "configuration_modalecontenu1_tempsreelsurdeplacement"
+msgstr "If \" Activated \" (checkboxe checked) tracker will work in real time during each of its travels."
+
+msgid "configuration_modalecontenu2_tempsreelsurdeplacement"
+msgstr "During allits times of car park, it follows its scheduled times of recording"
+
+msgid "configuration_modalecontenu3_tempsreelsurdeplacement"
+msgstr "The real time on travel is automatically deactivated at request of a historic mode or of a mode periscope"
+
+msgid "configuration_modalectitle_deplacementarret"
+msgstr "Detection travel / stop"
+
+msgid "configuration_modalecontenu1_deplacementarret"
+msgstr "These Settings determine how a vehicle is considered the state \" travel \" or \"parked \". "
+
+msgid "configuration_modalecontenu2_deplacementarret"
+msgstr "This status is used, firstly, by other Settings of the beacon and, secondly, by Geofence to display the status \" STOP \" or path."
+
+msgid "configuration_modalecontenu3_deplacementarret"
+msgstr "Travel detection: vibration time (or speed threshold) necessary to pass from the state \"parked \" to the state \"shift \"."
+
+msgid "configuration_modalecontenu4_deplacementarret"
+msgstr "Stop Detection: Time of absence of vibration required to pass the state \"move \" to the state \"parked \"."
+
+msgid "configuration_modalecontenu5_deplacementarret"
+msgstr "The settings below (originally 5 km/h, and 30 sec 1mn30) are the default and are optimum for the use of the tracker. They therefore do not need to be modified."
+
+msgid "configuration_modalecontenu1_alerttype"
+msgstr "Alarm Contact: warned departures and/or the vehicle stops."
+
+msgid "configuration_modalecontenu2_alerttype"
+msgstr "Configure which events the alarm on car trips."
+
+msgid "configuration_modalecontenu3_alerttype"
+msgstr "This alert is designed to monitor a parked vehicle. It can be triggered on vibration and/or speed (and/or on travel)."
+
+msgid "configuration_modalecontenu4_alerttype"
+msgstr "External Battery Alarm: warns of loss of external power (only trackers with internal battery)"
+
+msgid "configuration_modalectitle_fichierlog"
+msgstr "Setting log file"
+
+msgid "configuration_modaleccontenu_fichierlog"
+msgstr "To use the alarm, check the box. If the alarm is no longer used, uncheck it"
+
+msgid "configuration_modaleccontenu1_filtrage"
+msgstr "Time in minutes during which, after a first alarm trigger, a new outbreak of the same will not cause alarm SMS."
+
+msgid "configuration_modaleccontenu2_filtrage"
+msgstr "Minimum 5 minutes for the SC300 tags and 0 minutes for SC400 tags. Do not get too long."
+
+msgid "configuration_modalectitle_messagealerte"
+msgstr "Alert Message"
+
+msgid "configuration_modaleccontenu_messagealerte"
+msgstr "Customize the appearance alert message (30 characters) and / or customize the disappearance of alert message (30 characters)"
+
+msgid "configuration_modalectitle_telephonesms"
+msgstr "Phone SMS"
+
+msgid "configuration_modaleccontenu1_telephonesms"
+msgstr "Used to enter the 4 telephone numbers to which the tag will send different SMS alarms."
+
+msgid "configuration_modaleccontenu2_telephonesms"
+msgstr "Any changes made in the fields below causes a modification of recipients for all alarms."
+
+msgid "configuration_modaleccontenu3_telephonesms"
+msgstr "The use or not a number is informed at each alarm (checkbox checked / unchecked at every alarm setting level)."
+
+msgid "configuration_modaleccontenu4_telephonesms"
+msgstr "The international format may be used. At least one special number must be entered in order to use alarmes.ne attention must be paid to the fact that the numbers must be valid informed."
+
+#: //////////////////////////////////  option  //////////////////////////////////
+msgid "option_changementgroupe"
+msgstr "Change the tracker group's name"
+
+msgid "option_changementbalise"
+msgstr "Change the tracker's name"
+
+msgid "option_changementnumero"
+msgstr "Change the tracker's number"
+
+msgid "option_changementlangue"
+msgstr "Change the interface language"
+
+msgid "option_changementicone"
+msgstr "Change the tracker's icon"
+
+msgid "option_changementbdd"
+msgstr "Change the database"
+
+msgid "option_gerer"
+msgstr "Manage"
+
+msgid "option_droit_option"
+msgstr "Right to modify the icon and the name of trackers and groups"
+
+msgid "option_choisiricone"
+msgstr "Choose icon"
+
+msgid "option_groupeutilisateur"
+msgstr "User group"
+
+msgid "option_creergroupe"
+msgstr "Create group"
+
+msgid "option_modifiergroupe"
+msgstr "Modify group"
+
+msgid "option_supprimergroupe"
+msgstr "Delete group"
+
+msgid "option_compteutilisateur"
+msgstr "User account"
+
+msgid "option_creercompte"
+msgstr "Create account"
+
+msgid "option_modifiercompte"
+msgstr "Modify account"
+
+msgid "option_supprimercompte"
+msgstr "Delete account"
+
+msgid "option_fichegroupe"
+msgstr "Form group"
+
+msgid "option_baliseexistante"
+msgstr "Existing trackers"
+
+msgid "option_baliseassocgroupe"
+msgstr "Trackers associated with the group"
+
+msgid "option_idgroupe"
+msgstr "ID group"
+
+msgid "option_nomgroupe"
+msgstr "Name group"
+
+msgid "option_ficheutilisateur"
+msgstr "Form User"
+
+msgid "option_saisirinfos"
+msgstr "Set the users'information"
+
+msgid "option_duree"
+msgstr "Duration"
+
+msgid "option_finvalidite"
+msgstr "End validity"
+
+msgid "option_nom"
+msgstr "Lastname"
+
+msgid "option_prenom"
+msgstr "Firstname"
+
+msgid "option_saisirmdp"
+msgstr "Set the password later"
+
+msgid "option_choisirdureecompte"
+msgstr "Choose the account duration (validity)"
+
+msgid "option_illimite"
+msgstr "Unlimited"
+
+msgid "option_envoyercomptemail"
+msgstr "Send this account to the mail"
+
+msgid "option_selectmodifiergroupebaliseassoc"
+msgstr "Select (or modify) the associated trackers groups"
+
+msgid "option_groupeexistant"
+msgstr "Existing trackers groups"
+
+msgid "option_groupeassoccompte"
+msgstr "Group associated with account"
+
+msgid "option_choixconfigweb"
+msgstr "Choice Configuration Web"
+
+msgid "option_cliquericone"
+msgstr "Click on the desired icon"
+
+msgid "option_iconeactuel"
+msgstr "My current icon"
+
+msgid "option_alert_aucunebaliseajoutee"
+msgstr "No tracker was added to the group"
+
+msgid "option_alert_veuillezajouteraumoinsunebalise"
+msgstr "Please at least adda tracker to this group"
+
+msgid "option_alert_veuillezsaisirnomgroupe"
+msgstr "Please set the name of the groupe"
+
+msgid "option_alert_veuillezajouteraumoinsungroupe"
+msgstr "Please at least add a trackers group"
+
+msgid "option_alert_veuillezajouteraumoinsuneduree"
+msgstr "Please at least select a duration"
+
+msgid "option_alert_veuillezselectionneruneduree"
+msgstr "Please select a type of duration (the hour, day etc. ..)"
+
+msgid "option_alert_veuillezsaisiruneconfig"
+msgstr "Please select a configuration"
+
+msgid "option_alert_veuillezsaisirunmdp"
+msgstr "Please select a password"
+
+msgid "option_alert_veuillezsaisirunlogin"
+msgstr "Please select a login"
+
+msgid "option_alert_veuillezselectionnercompte"
+msgstr "Please select an account"
+
+msgid "option_alert_modifier"
+msgstr "has been modified"
+
+msgid "option_alert_nomgroupeexistedeja"
+msgstr "This group's name already exists"
+
+msgid "option_alert_nouveaugroupecreer"
+msgstr "You created well the new group"
+
+msgid "option_alert_nomcompteexistedeja"
+msgstr "This account's name (login) already exists"
+
+msgid "option_alert_nouveaucomptecreer"
+msgstr "You created well the new account"
+
+msgid "option_confirm_changernombalise"
+msgstr "Really want to change the tracker name"
+
+msgid "option_confirm_changernumerobalise"
+msgstr "Really want to change the tracker number"
+
+msgid "option_confirm_changernomgroupe"
+msgstr "Really want to change the group name"
+
+msgid "option_confirm_warningmultiplebalises"
+msgstr "WARNING: this icon will be registered for all the selected trackers"
+
+msgid "option_confirm_enregistrericone"
+msgstr "Really want to register the icon for"
+
+msgid "option_confirm_supprimergroupe"
+msgstr "Really want to delete the group"
+
+msgid "option_confirm_supprimercompte"
+msgstr "Really want to delete the account"
+
+msgid "confidentialite_balise"
+msgstr "Tracker Privacy"
+
+msgid "afficher"
+msgstr "Show"
+
+msgid "jour_valide"
+msgstr "Valid days"
+
+msgid "confidentialite_ok"
+msgstr "The privacy has been changed"
+
+msgid "privacy_info1"
+msgstr ""
+"The tracker privacy is managed with setting 2 pleanary time and the valid days<br>"
+"<br>"
+"-For the pleanary time: set the 1st intervalle of time and then 2nd  intervals of time<br>"
+"-For the valid days, it is enough to check the checkboxes that want to return the accessible positions<br>"
+"<br>"
+"PS: We note that the confidentiality acts on tracking, history and reports of positions"
+
+msgid "historique_connexion"
+msgstr "Connection history: "
+
+msgid "historique_connexion_utilisateur"
+msgstr "User"
+
+msgid "historique_connexion_date"
+msgstr "Date"
+
+msgid "historique_connexion_hour"
+msgstr "Hour"
+
+msgid "historique_connexion_IP"
+msgstr "IP address"
+
+#: //////////////////////////////////  autres  //////////////////////////////////
+msgid "balise"
+msgstr "Tracker"
+
+msgid "veuillezchoisirungroupe"
+msgstr "Please choose a tracker group"
+
+msgid "veuillezchoisirunclientprecis"
+msgstr "Please choose a specific customer"
+
+msgid "veuillezchoisiruneicone"
+msgstr "Please choose an icon"
+
+msgid "veuillezchoisirunebalise"
+msgstr "Please choose a tracker"
+
+msgid "veuillezchoisirqueunebalise"
+msgstr "Please choose only one tracker"
+
+msgid "veuillezsaisiruneadresse"
+msgstr "Please set an address"
+
+msgid "veuillezsaisirunnumtel"
+msgstr "Please set a valid phone number"
+
+msgid "pas_debut"
+msgstr "No BEGINNING time"
+
+msgid "pas_fin"
+msgstr "No END time"
+
+msgid "ouvrir"
+msgstr "Open"
+
+msgid "fermer"
+msgstr "Close"
+
+msgid "valider"
+msgstr "Confirm"
+
+msgid "inconnue"
+msgstr "Unknown"
+
+msgid "aucune"
+msgstr "None"
+
+msgid "non"
+msgstr "no"
+
+msgid "pas"
+msgstr "No"
+
+msgid "trouve"
+msgstr "found"
+
+msgid "brouille"
+msgstr "jammed"
+
+msgid "nonbrouille"
+msgstr "not jammed"
+
+msgid "depuis"
+msgstr "Since"
+
+msgid "alimext"
+msgstr "PowExt"
+
+msgid "alimbasse"
+msgstr "PowLow"
+
+msgid "alim"
+msgstr "Power"
+
+msgid "statut"
+msgstr "Status"
+
+msgid "numeroappel"
+msgstr "Call Number"
+
+msgid "dernieresynchro"
+msgstr "Last synchronization"
+
+msgid "modefonctionnement"
+msgstr "Operating mode"
+
+msgid "acquisitionpos"
+msgstr "Acquisition of Pos (GPS)"
+
+msgid "rapatriementpos"
+msgstr "Repatriation of Pos"
+
+msgid "entrajet"
+msgstr "At travelling"
+
+msgid "enveille"
+msgstr "In Standby"
+
+msgid "tempsreelsurappel"
+msgstr "Real-time on calling is activated for"
+
+msgid "alarmesactivees"
+msgstr "Activated Alarms"
+
+msgid "historique"
+msgstr "History"
+
+msgid "silencieux"
+msgstr "Silent"
+
+msgid "cartographie"
+msgstr "Cartography"
+
+msgid "vuerapprochee"
+msgstr "Close View"
+
+msgid "periode"
+msgstr "Periods"
+
+msgid "debut"
+msgstr "From"
+
+msgid "fin"
+msgstr "to"
+
+msgid "heure"
+msgstr "Hour"
+
+msgid "jour"
+msgstr "Day"
+
+msgid "semaine"
+msgstr "Week"
+
+msgid "mois"
+msgstr "Month"
+
+msgid "lundi"
+msgstr "Monday"
+
+msgid "mardi"
+msgstr "Tuesday"
+
+msgid "mercredi"
+msgstr "Wednesday"
+
+msgid "jeudi"
+msgstr "Thursday"
+
+msgid "vendredi"
+msgstr "Friday"
+
+msgid "samedi"
+msgstr "Saturday"
+
+msgid "dimanche"
+msgstr "Sunday"
+
+msgid "aujourdhui"
+msgstr "Today"
+
+msgid "hier"
+msgstr "Yesterday"
+
+msgid "semaineflottante"
+msgstr "Since a week"
+
+msgid "moisflottant"
+msgstr "Since a month"
+
+msgid "anneeflottante"
+msgstr "Since a year"
+
+msgid "recherche"
+msgstr "Search"
+
+msgid "filtrerlessarrets"
+msgstr "Filter stops"
+
+msgid "distancefiltree"
+msgstr "Fitered Distance"
+
+msgid "avant"
+msgstr "before"
+
+msgid "apres"
+msgstr "after"
+
+msgid "dernierespositions"
+msgstr "last positions"
+
+msgid "idbalise"
+msgstr "Id Tracker"
+
+msgid "nombalise"
+msgstr "Tracker Name"
+
+msgid "adresse"
+msgstr "Details"
+
+msgid "vitesse"
+msgstr "Speed"
+
+msgid "agrandir"
+msgstr "Enlarge"
+
+msgid "reduire"
+msgstr "Minimize"
+
+msgid "routesmajeur"
+msgstr "major routes"
+
+msgid "chargerlesadresses"
+msgstr "Load address"
+
+msgid "finsuperieurdebut"
+msgstr "Last date must be later than the first"
+
+msgid "veuillezsaisirnombreentre"
+msgstr "Please choose positions number between 1 and 9999"
+
+msgid "pasdepositions"
+msgstr "Positions not found"
+
+msgid "creer"
+msgstr "Create"
+
+msgid "modifier"
+msgstr "Modify"
+
+msgid "annuler"
+msgstr "Cancel"
+
+msgid "messageactive"
+msgstr "Activate message"
+
+msgid "messagedesactive"
+msgstr "Desactivate message"
+
+msgid "transmettresmsnumeros"
+msgstr "Transmit SMS to the numbers during"
+
+msgid "apparition"
+msgstr "Appearance"
+
+msgid "disparition"
+msgstr "Disappearance"
+
+msgid "numero"
+msgstr "Number"
+
+msgid "alert_tel1pasenregistrer"
+msgstr "Phone Ndeg;1 still not registred"
+
+msgid "alert_tel2pasenregistrer"
+msgstr "Phone Ndeg;2 still not registred"
+
+msgid "alert_tel3pasenregistrer"
+msgstr "Phone Ndeg;3 still not registred"
+
+msgid "alert_tel4pasenregistrer"
+msgstr "Phone Ndeg;4 still not registred"
+
+msgid "alert_pasdelog"
+msgstr "There is no logs"
+
+msgid "remarques"
+msgstr "Remarks"
+
+msgid "historiqueparametrage"
+msgstr "Settings history  - Tracker:"
+
+msgid "dateenregistrement"
+msgstr "Registration Date"
+
+msgid "dateenvoi"
+msgstr "Send Date"
+
+msgid "j"
+msgstr "d"
+
+msgid "confirmdeconnexion"
+msgstr "Do you Really want to leave the application?"
+
+msgid "selectionnerbalise"
+msgstr "select a tracker"
+
+msgid "selectionnergroupe"
+msgstr "select a group"
+
+msgid "votreposition"
+msgstr "Your position"
+
+msgid "icone"
+msgstr "Icon"
+
+msgid "choixbalise"
+msgstr "Trackers choice"
+
+msgid "legende"
+msgstr "Legend"
+
+msgid "faible"
+msgstr "Low"
+
+msgid "externe"
+msgstr "Extern"
+
+msgid "tempsreelsurdeplacemeentestactive"
+msgstr "Real time on travel is activated"
+
+msgid "infobulle"
+msgstr "InfoWindow"
+
+msgid "rien"
+msgstr "Nothing"
+
+msgid "souvenirdemoi"
+msgstr "Remember me"
+
+msgid "telechargementnotice"
+msgstr "Download the notice"
+
+msgid "centrerzoom"
+msgstr "Zoom and Center"

@@ -1,0 +1,681 @@
+<?php
+
+	/*
+	* Affiche startegie
+	*
+	*/
+session_start();
+$_SESSION['CREATED'] = time();
+require_once ("../../../lib/php-gettext-1.0.12/gettext.inc");
+$locale = "fr_FR";
+if (isset($_SESSION["language"])) {
+	$locale = $_SESSION['language'];
+}else{
+	$_SESSION['language'] = "fr_FR";
+	$locale = "fr_FR";
+}
+T_setlocale(LC_MESSAGES, $locale);
+$encoding = "UTF-8";
+$domain = "messages";
+bindtextdomain($domain, '../../../locale');
+bind_textdomain_codeset($domain, $encoding);
+textdomain($domain);
+
+$date = date("Y-m-d");
+$heure = date("H")+2;
+$heures = date($heure.":i:s");
+$dateTime = $date." 00:00:00";
+$localDateTime = new DateTime(null, new DateTimezone('Europe/Berlin'));
+		// echo $localDateTime->format('Y-m-d H:i:s');
+?>
+<div id="batteriefaible" class="panel panel-default">
+	<div id="" class="panel-collapse collapse in">
+		<div class="panel-body blue" >
+			<div class="container-fluid" style="overflow:hidden; padding:3px;border-radius:10px 10px 10px 10px;">
+				<div class="panel-body">
+					<div class="modal fade" id="batfaible" tabindex="-20" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<br><br><br><br>
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+										<h5><b>Strat&eacute;gie batterie faible</b></h5>
+											<br>L'activation de cette strat&eacute;gie se param&egrave;tre dans la configuration de l'alarme batterie interne.<br>
+											<br><b>Mode normal</b>
+											<br>Ce mode permet de faire un suivi distant ou rapproch&eacute; de la balise suivant les param&egrave;tres avec un choix au niveau du fonctionnement du GSM.	
+											<br>Remarques: 
+											<br>Le GSM peut fonctionner au choix suivant trois modes seulement si la batterie est faible: 
+											<br>- Permanent : le GSM est maintenu allum&eacute; en permanence.	
+											<br>- Eco : en trajet le GSM est allum&eacute;. A l'arr&ecirc;t il est &eacute;teint, il s'allume que pour les transmissions de positions ou de SMS d'alarmes.	
+											<br>- Eco+ : le GSM ne s'allume qu'au moment de transmettre des positions ou un SMS d'alarme, ce param&egrave;tre n'est &agrave; utiliser que si le temps entre deux envois pendant les trajets est suffisamment long (sup&eacute;rieur ou &eacute;gal &agrave; 5 minutes).	
+											<br><br><b>Mode historique</b>
+											<br>Permet d'avoir le d&eacute;tail des trajets sans remont&eacute;es imm&eacute;diate afin d'&eacute;conomiser l'autonomie de la batterie.
+											<br>Remarques: 
+											<br>GSM : se connecte aux moments des envois de positions ou de SMS d'alarmes seulement si la batterie est faible.	
+											<br><br><b>Mode p&eacute;riscope</b>
+											<br>Permet un fonctionnement dit "p&eacute;riscope" (lorsqu'un v&eacute;hicule n'a plus besoin d'&ecirc;tre surveill&eacute;) d'avoir des prises et remont&eacute;es de points espac&eacute;es	
+											<br>Remarques: 
+											<br>GSM : se connecte aux moments des envois de positions ou de SMS d'alarmes seulement si la batterie est faible
+											<br>- Acquisition des positions : s'effectue suivant les temps renseign&eacute;s pour les trajets et les arr&ecirc;ts si la batterie est faible.	
+											<br>- Rapatriement des positions : s'effectue suivant les temps renseign&eacute;s pour les trajets et les arr&ecirc;ts	si la batterie est faible.
+									</div>
+								</div>
+							</div>
+					</div>
+					<form class="form-horizontal" role="form" style="font-size: 14px;">
+						<div class="form-group">
+							<div class="col-md-6" >
+								&nbsp; &nbsp;<i class="fa fa-sitemap fa-fw"></i>&nbsp;
+									<label class="control-label">Batterie faible<?php //echo _('configuration_parametredetectdeplacementarret'); ?>:
+										<a href="#" data-toggle="modal" data-target="#batfaible"><i class="fa fa-info-circle info"></i></a>
+									</label>
+							</div>
+							<div class="col-md-6">
+								&nbsp; &nbsp;<select id="modefonctbf" onchange="showcthisbf(), showcthisgsmbf()" class="control-form input-xs" style="margin-top:6px;">
+												<option value="normal" selected>Mode Normal</option>
+												<option value="historique">Mode Historique</option>
+												<option value="periscope">Mode P&eacute;riscope</option>
+											</select>	
+							</div>
+							<script>
+							function showcthisgsmbf(){
+								if(document.getElementById("modefonctbf").value == "normal"){
+									$("#gsmbf").show(); $("#labelgsmbf").show();
+								}else{
+									$("#gsmbf").hide(); $("#labelgsmbf").hide(); 
+									$("#r").hide(); $("#rt").hide();
+								}
+							}
+							</script>
+						</div>
+						<div style="border: 0; height: 1px; background: #aaa; background-image: linear-gradient(to right, lightgray, lightgray, lightgray);"></div>
+						<br/>
+					</form>
+					<form class="form-horizontal" role="form">
+						<div class="col-md-6">
+							<div class="row">&nbsp; &nbsp; &nbsp;<b>Fr&eacute;quence d'acquisition des positions</b></div>
+							<div class="form-group">
+								<label for="trajetacp" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En trajet:</label>
+								<div class="col-md-3">
+									<select name="trajetacp" id="trajetacp" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="5" >5s</option><option value="10" >10s</option><option value="15" >15s</option><option value="20" >20s</option><option value="25" >25s</option>
+										<option value="30" >30s</option><option value="35" >35s</option><option value="40" >40s</option><option value="45" >45s</option>
+										<option value="60" selected>1mn</option><option value="90" >1mn30s</option><option value="120" >2mn</option><option value="150" >2mn30s</option><option value="180" >3mn</option>
+										<option value="300" >5mn</option><option value="600" >10mn</option><option value="900" >15mn</option><option value="1200" >20mn</option><option value="1800" >30mn</option>
+										<option value="3600" >1h</option><option value="5400" >1h30</option><option value="7200" >2h</option><option value="10800" >3h</option><option value="14400" >4h</option>
+										<option value="18000" >5h</option><option value="21600" >6h</option><option value="25200" >7h</option><option value="28800" >8h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="timingacp" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En timing:</label>
+								<div class="col-md-3">
+									<select name="timingacp" id="timingacp" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="8" >8mn</option><option value="30" >30mn</option><option value="60" >1h</option><option value="120" >2h</option><option value="240" >4h</option><option value="360" >6h</option>
+										<option value="480" >8h</option><option value="720" >12h</option><option value="1440" >24h</option><option value="600" >600mn</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="arretacp" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En arr&ecirc;t:</label>
+								<div class="col-md-3">
+									<select name="arretacp" id="arretacp" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="300" >5mn</option><option value="600" >10mn</option><option value="900" >15mn</option><option value="1200" >20mn</option><option value="1800" >30mn</option>
+										<option value="3600" >1h</option><option value="5400" >1h30</option><option value="7200" >2h</option><option value="10800" >3h</option><option value="14400" >4h</option>
+										<option value="18000" >5h</option><option value="21600" >6h</option><option value="25200" >7h</option><option value="28800" >8h</option><option value="43200" >12h</option><option value="64800" >18h</option>
+									</select>
+								</div>
+							</div>
+							<script>
+							function showcthisbf(){
+								if(document.getElementById("gsmbf").value == "eco" || document.getElementById("gsmbf").value == "eco+"){
+									$("#r").show(); $("#rt").show();
+								}else{
+									$("#r").hide(); $("#rt").hide();
+								}
+							}
+							</script>
+							<div class="form-group">
+								<label id="labelgsmbf" for="gsmbf" class="col-md-4 control-label" style="display:none; font-weight: normal"><b>GSM :</b> <?php //echo _('configuration_deplacementtempsabscencevib'); ?></label>
+									<div class="col-md-5">
+										<select name="gsmbf" id="gsmbf" class="form-control  input-xs" onchange="showcthisbf();" style="display:none; margin-top: 6px">
+											<option value="permanent" >Permanent</option><option value="eco" >Actif &agrave; l'arr&ecirc;t</option><option value="eco+" >Actif en mouvement</option>
+										</select>
+									</div>							
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="row">&nbsp; &nbsp; &nbsp;<b>Fr&eacute;quence de rapatriement des positions</b></div>
+							<div class="form-group">
+								<label for="trajetrap" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En trajet:</label>
+								<div class="col-md-3">
+									<select name="trarap" id="trajetrap" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="0" >Imm&eacute;diat</option>
+										<option value="1" selected>1mn</option><option value="2" >2mn</option><option value="3" >3mn</option><option value="4" >4mn</option><option value="5" >5mn</option>
+										<option value="10" >10mn</option><option value="15" >15mn</option><option value="20" >20mn</option><option value="30" >30mn</option>
+										<option value="60" >1h</option><option value="90" >1h30</option><option value="120" >2h</option><option value="180" >3h</option><option value="240" >4h</option>
+										<option value="300" >5h</option><option value="360" >6h</option><option value="25200" >7h</option><option value="480" >8h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="timingrap" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En timing:</label>
+								<div class="col-md-3">
+									<select name="timingrap" id="timingrap" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="8" >8mn</option><option value="30" >30mn</option><option value="60" >1h</option><option value="120" >2h</option><option value="240" >4h</option><option value="360" >6h</option>
+										<option value="480" >8h</option><option value="720" >12h</option><option value="1440" >24h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="arretrap" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En arr&ecirc;t:</label>
+								<div class="col-md-3">
+									<select name="arretrap" id="arretrap" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="5" >5mn</option><option value="10" >10mn</option><option value="15" >15mn</option><option value="20" >20mn</option><option value="30" >30mn</option>
+										<option value="60" >1h</option><option value="90" >1h30</option><option value="120" >2h</option><option value="180" >3h</option><option value="240" >4h</option>
+										<option value="300" >5h</option><option value="360" >6h</option><option value="420" >7h</option><option value="480" >8h</option><option value="720" >12h</option><option value="1440" >24h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label id="r" for="retardbf" class="col-md-6 control-label" style="display:none; font-weight: normal;"><b>Retard &agrave; l'activation :</b><?php //echo _('configuration_deplacementtempsabscencevib'); ?></label>
+								<div id="rt" class="col-md-3" style="display:none;">
+									<select name="retardbf" id="retardbf" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="0">0mn</option><option value="2">2mn</option><option value="5">5mn</option><option value="10">10mn</option><option value="30">30mn</option><option value="60">1h</option><option value="120">2h</option>
+									</select>
+								</div>							
+							</div>
+						</div>
+						<div class="col-md-offset-11">
+							<input type="button" class="btn btn-default btn-xs" onClick="validbatfaible()" value="<?php echo _('valider'); ?> " style="margin-top: 6px">
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>	
+	</div>	
+</div>	
+<br />
+<div id="stragtegiegeofencing" class="panel panel-default">
+	<div id="" class="panel-collapse collapse in">
+		<div class="panel-body blue" >
+			<div class="container-fluid" style="overflow:hidden; padding:3px;border-radius:10px 10px 10px 10px;">
+				<div class="panel-body">
+					<div class="modal fade" id="geo" tabindex="-20" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<br><br><br><br>
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+										<h5><b>Strat&eacute;gie entr&eacute;e et sortie de zone g&eacute;ofencing </b></h5>
+											<br>L'enclenchement de cette strat&eacute;gie se param&egrave;tre pour chaque zone.<br>
+											<br><b>Mode normal</b>
+											<br>Ce mode permet de faire un suivi distant ou rapproch&eacute; de la balise suivant les param&egrave;tres avec un choix au niveau du fonctionnement du GSM.	
+											<br>Remarques: 
+											<br>Le GSM peut fonctionner au choix suivant trois modes seulement si la balise se trouve dans la zone d&eacute;finie: 
+											<br>- Permanent : le GSM est maintenu allum&eacute; en permanence.	
+											<br>- Eco : en trajet le GSM est allum&eacute;. A l'arr&ecirc;t il est &eacute;teint, il s'allume que pour les transmissions de positions ou de SMS d'alarmes.	
+											<br>- Eco+ : le GSM ne s'allume qu'au moment de transmettre des positions ou un SMS d'alarme, ce param&egrave;tre n'est &agrave; utiliser que si le temps entre deux envois pendant les trajets est suffisamment long (sup&eacute;rieur ou &eacute;gal &agrave; 5 minutes).	
+											<br><br><b>Mode historique</b>
+											<br>Permet d'avoir le d&eacute;tail des trajets sans remont&eacute;es imm&eacute;diate afin d'&eacute;conomiser l'autonomie de la batterie.
+											<br>Remarques: 
+											<br>GSM : se connecte aux moments des envois de positions ou de SMS d'alarmes seulement si la balise se trouve dans la zone d&eacute;finie.	
+											<br><br><b>Mode p&eacute;riscope</b>
+											<br>Permet un fonctionnement dit "p&eacute;riscope" (lorsqu'un v&eacute;hicule n'a plus besoin d'&ecirc;tre surveill&eacute;) d'avoir des prises et remont&eacute;es de points espac&eacute;es	
+											<br>Remarques: 
+											<br>GSM : se connecte aux moments des envois de positions ou de SMS d'alarmes seulement si la balise se trouve dans la zone d&eacute;finie
+											<br>- Acquisition des positions : s'effectue suivant les temps renseign&eacute;s pour les trajets et les arr&ecirc;ts si la balise se trouve dans la zone d&eacute;finie.	
+											<br>- Rapatriement des positions : s'effectue suivant les temps renseign&eacute;s pour les trajets et les arr&ecirc;ts	si la balise se trouve dans la zone d&eacute;finie.
+									</div>
+								</div>
+							</div>
+					</div>
+					<form class="form-horizontal" role="form" style="font-size: 14px;">
+						<div class="form-group">
+							<div class="col-md-6" >
+								&nbsp; &nbsp;<i class="fa fa-sitemap fa-fw"></i>&nbsp;
+									<label class="control-label">Entr&eacute;e et sortie de zone g&eacute;ofencing<?php //echo _('configuration_parametredetectdeplacementarret'); ?>:
+										<a href="#" data-toggle="modal" data-target="#geo"><i class="fa fa-info-circle info"></i></a>
+									</label>
+							</div>
+							<div class="col-md-3">
+								&nbsp; &nbsp;<select id="modefonctgeo" onchange="showcthisgeo(), showcthisgsmgeo()" class="control-form input-xs" style="margin-top:6px;">
+												<option value="normal" selected>Mode Normal</option>
+												<option value="historique">Mode Historique</option>
+												<option value="periscope">Mode P&eacute;riscope</option>
+											</select>	
+							</div>	
+							<div class="col-md-3">
+								<button type="button" onclick="loadzgfe()" 
+									class="btn btn-primary btn-xs col-md-offset-4" style="margin-top: 6px;">
+									D&eacute;finition des zones <i class="fa fa-map"></i>
+								</button>
+								
+								<div id="modalmap" class="modal fade" tabindex="-20" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+									<br><br>
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+												<b>Zone(s) de g&eacute;ofencing embarqu&eacute;e(s)</b>
+											</div>
+											<div class="modal-body">
+												<div id="zmapgeo" style="height: 500px; border: 1px solid #AAA;"></div>
+											</div>
+											<div class="modal-footer">
+												<table class="table table-borderless" >
+													<tr >
+														<td style="padding: 0; margin: 0">
+															<table class="table table-bordered"  style="padding: 0; margin: 0"> 
+																<tr style="padding: 0; margin: 0">
+																	<td style="padding-left: 100px; margin: 0">
+																		<b>1) <?php echo _('geofencing_choisirnumerozone'); ?>:</b>
+																		<select id="selectzge" onchange="loadzgfe();" class="input-xs" style="width:75px">
+																				<option value="all" selected><?php echo _('geofencing_toutes'); ?></option>
+																				<?php
+																					$nbreGenfencing = 5; $x = 0;
+																					for($i = 1 ; $i <= $nbreGenfencing ; $i++){
+																						echo '<option value="'.$x.'" >'.$i.'</option>';
+																						$x += 1;
+																					}	
+																				?>
+																		</select> <br>
+																		<div id="groupstrat">
+																			<b id="gt">3) Strat&eacute;gie d&eacute;activ&eacute; </b> 
+																			<input type="checkbox" id="gstrat" onclick="showmes()">
+																		</div>
+																	</td>
+																	<td style="padding-left: 100px; margin: 0">
+																		<div id="groupzoneact">
+																			<b id="gdesac">2) <?php echo _('messagedesactive'); ?></b>
+																			<input type="checkbox" id="gact" onclick="shownumber()">
+																			<a href="#" data-toggle="modal" data-target="#info_message_active_desactive"> <i class="fa fa-info-circle info"></i></a>
+																			<div class="modal fade" id="info_message_active_desactive" tabindex="-20" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																				<br><br><br><br>
+																				<div class="modal-dialog">
+																					<div class="modal-content">
+																						<div class="modal-body">
+																								<p><b><?php echo _('geofencing_modaletitle_activealarme'); ?></b></p>
+																								<?php echo _('geofencing_modalecontenu_activealarme'); ?>
+																						</div>
+																					</div>
+																				</div>
+																			</div>	<br>
+																		</div>
+																			
+																		<div id="groupmsg">
+																			<?php echo _('geofencing_messageentree'); ?>:&nbsp;<br>
+																			<input  id="message_entreeg" onpaste="return false;"  onkeyup="return verifierCaracteres(event,this.id,'a');" maxlength="29" type="text" placeholder="<?php echo _('geofencing_alerteentree'); ?> " class="form-control input-xs" style="width:200px">
+																			
+																			<?php echo _('geofencing_messagesortie'); ?>:&nbsp;<br>
+																			<input id="message_sortieg" onpaste="return false;"  onkeyup="return verifierCaracteres(event,this.id,'a');"  maxlength="29" type="text" placeholder="<?php echo _('geofencing_alertefin'); ?>" class="form-control input-xs" style="width:200px">
+																		</div>
+																	</td>
+																</tr>
+																<tr id="gmsg" style="display:none;">
+																	<td colspan="2" style="padding-left: 100px; margin: 0; width:1000px">
+																		<b>4) Transmettre un SMS lors de:</b>
+																		<table class="table table-condensed">
+																			<tr>
+																				<td><b>Num&eacute;ros </b></td>
+																				<td><b>Entr&eacute;e</b></td>
+																				<td><b>Sortie</b></td>
+																			</tr>
+																			<tr>
+																				<td><input type="text" class="form-control input-xs" id="message_numero_1" readonly style="width:150px"></td>
+																				<td><input type="checkbox" id="Anumg1"></td>
+																				<td><input type="checkbox" id="Snumg1"></td>
+																			</tr>
+																			<tr>
+																				<td><input type="text" class="form-control input-xs" id="message_numero_2" readonly style="width:150px"></td>
+																				<td><input type="checkbox" id="Anumg2"></td>
+																				<td><input type="checkbox" id="Snumg2"></td>
+																			</tr>
+																			<tr>
+																				<td><input type="text" class="form-control input-xs" id="message_numero_3" readonly style="width:150px"></td>
+																				<td><input type="checkbox" id="Anumg3"></td>
+																				<td><input type="checkbox" id="Snumg3"></td>
+																			</tr>
+																			<tr>
+																				<td><input type="text" class="form-control input-xs" id="message_numero_4" readonly style="width:150px"></td>
+																				<td><input type="checkbox" id="Anumg4"></td>
+																				<td><input type="checkbox" id="Snumg4"></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+													<br/>
+	
+												<!--div style="border: 0; height: 1px; background: #aaa; background-image: linear-gradient(to right, lightgray, lightgray, lightgray);"></div> <br>
+												
+												<div class="container-fluid text-center">
+													<button type="button" class="btn btn-default btn-xs" onclick=""><b>Supprimer la(es) zone(es)</b></button> 
+													<button type="button" class="btn btn-default btn-xs" onclick="Validerzge()"><b>Valider la(es) zone(s)</b></button>
+												</div-->							
+											</div>
+										</div>
+									</div>
+								</div>
+								<script>
+									var idTracker = document.getElementById("idBalise").innerHTML;
+									var nomBalise=document.getElementById('nomBalise').innerHTML;
+									var nomDatabaseGpw = globalnomDatabaseGpw;
+									var ipDatabaseGpw = globalIpDatabaseGpw;
+
+									/*map par defaut*/
+									var map = L.map( 'zmapgeo', {
+										center: [47.081012, 2.398782],
+										zoom: 6
+									});
+											
+									var basemaps = {
+										//Détail : L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'}),
+										Plan : L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
+										Positron : L.tileLayer('https://maps.tilehosting.com/styles/positron/{z}/{x}/{y}.png?key=EevE8zHrA8OKNsj637Ms', {minZoom: 3, maxZoom: 18, attribution: '&copy; <a href="https://www.maptiler.com/license/maps/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'}),
+										Routier : L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {minZoom: 3, maxZoom: 18, attribution: '&copy; <a href="https://www.maptiler.com/license/maps/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'}),
+										Satellite : L.tileLayer('https://maps.tilehosting.com/styles/hybrid/{z}/{x}/{y}.jpg?key=EevE8zHrA8OKNsj637Ms', {minZoom: 3, maxZoom: 18, attribution: '&copy; <a href="https://www.maptiler.com/license/maps/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'}),
+										Street : L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=EevE8zHrA8OKNsj637Ms',{minZoom: 3, maxZoom: 18, attribution: '&copy; <a href="https://www.maptiler.com/license/maps/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'}),
+										Topo : L.tileLayer('https://maps.tilehosting.com/styles/topo/{z}/{x}/{y}.png?key=EevE8zHrA8OKNsj637Ms',{minZoom: 3, maxZoom: 18, attribution: '&copy; <a href="https://www.maptiler.com/license/maps/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'})
+									};
+									L.control.layers(basemaps).addTo(map);
+									basemaps.Plan.addTo(map);
+											
+									document.body.className = "";
+									geocoder = new L.Control.geocoder({ defaultMarkGeocode: false})
+										.on('markgeocode', function(e) {
+											var center = e.geocode.center; 
+											var lat = center.lat; 
+											var lng = center.lng;		
+											var marker = new L.FeatureGroup();
+												$.getJSON('https://geocoder.tilehosting.com/r/'+ lng +'/'+ lat +'.js?key=EUON3NGganG4JD5zzQlN', function(data) {
+													marker.addLayer(new L.marker([lat,lng]).bindPopup(data.results[0].display_name));
+												});
+														
+												map.setView(new L.LatLng(lat,lng),16);
+												map.addLayer(marker);
+										})
+										.addTo(map);
+									/*fin*/
+											
+									// Initialise the FeatureGroup to store editable layers
+									var editableLayers = new L.FeatureGroup();
+
+									// Initialise the draw control and pass it the FeatureGroup of editable layers
+									var drawControl = new L.Control.Draw({
+										//position: 'topright',
+										draw: {
+											marker: false,
+											polyline: false,
+											polygon: false,
+											circle: false,
+												
+											rectangle: {
+												allowIntersection: false, // Restricts shapes to simple rectangle
+												drawError: {
+													color: '#e1e100', // Color the shape will turn when intersects
+													message: '<strong>Impossible dee faire ce dessin sur la carte !<strong>' // Message that will show when intersect
+												},
+												shapeOptions: {
+													color: '#0000FF',
+													clickable: true,
+													weight: 3
+												}
+											}
+										},
+										edit: {
+											featureGroup: editableLayers, //REQUIRED!!
+											edit: true,
+											remove: true
+										}
+									});
+											
+									map.addControl(drawControl);
+
+									map.addLayer(editableLayers);
+									
+									/*variable de points*/
+									var latzge1, lngzge1, latzge2, lngzge2, n, bounds, rect, Lrect = [];
+
+									map.on('draw:created', function(e) {
+										if(!idTracker){
+											alert("Veuillez choisir une balise.");
+										}else if(document.getElementById("selectzge").value == "all"){
+											alert("Veuillez choisir une zone precise.");
+										}else if(document.getElementById("message_entreeg").value == "" || document.getElementById("message_sortieg").value == ""){
+											alert("Veuillez renseigner les champs : Message d'entree et de sortie.");
+										}else{
+											var type = e.layerType,
+											layer = e.layer;
+
+											if (type === 'rectangle') {
+												layer.bindPopup('Nouvelle zone choisie...');
+											}
+
+											editableLayers.addLayer(layer);
+											
+											geoembarquee($("#selectzge").val(), document.getElementById("gstrat"), document.getElementById("gact"), $("#message_entreeg").val(), $("#message_sortieg").val(), 
+															document.getElementById("Anumg1"), document.getElementById("Anumg2"), document.getElementById("Anumg3"), document.getElementById("Anumg4"), 
+															document.getElementById("Snumg1"), document.getElementById("Snumg2"), document.getElementById("Snumg3"), document.getElementById("Snumg4"),
+															layer._bounds._northEast.lat, layer._bounds._southWest.lat, layer._bounds._northEast.lng, layer._bounds._southWest.lng);	
+										}
+									});
+										
+									map.on('draw:edited', function (e) {
+										if(!idTracker){
+											alert("Veuillez choisir une balise.");
+										}else if(document.getElementById("selectzge").value == "all"){
+											alert("Veuillez choisir une zone pr&eacute;cise.");
+										}else if(document.getElementById("message_entreeg").value == "" || document.getElementById("message_sortieg").value == ""){
+											alert("Veuillez renseigner les champs : Message d'entrée et de sortie.");
+										}else{
+											var layers = e.layers;
+											layers.eachLayer(function (layer){
+												geoembarquee($("#selectzge").val(), document.getElementById("gstrat"), document.getElementById("gact"), $("#message_entreeg").val(), $("#message_sortieg").val(), 
+															document.getElementById("Anumg1"), document.getElementById("Anumg2"), document.getElementById("Anumg3"), document.getElementById("Anumg4"), 
+															document.getElementById("Snumg1"), document.getElementById("Snumg2"), document.getElementById("Snumg3"), document.getElementById("Snumg4"),
+															layer._bounds._northEast.lat, layer._bounds._southWest.lat, layer._bounds._northEast.lng, layer._bounds._southWest.lng);
+											});
+										}
+									});
+
+									map.on('draw:deleted', function (e) {
+										if(!idTracker){
+											alert("Veuillez choisir une balise.");
+										}else if(document.getElementById("selectzge").value == "all"){
+											alert("Veuillez choisir une zone precise.");
+										}else{
+											//alert("Suppression de la zone termin&eacute;e. \n NordEst : " + layer._bounds._northEast.lat + " + " + layer._bounds._northEast.lng + " \n SudOuest : " + layer._bounds._southWest.lat + " + " + layer._bounds._southWest.lng);
+											//alert("Suppression de la zone termin&eacute;e.");
+											//geoembarqueedel($("#selectzge").val());
+											
+											document.getElementById("gact").checked = false;
+											document.getElementById("gstrat").checked = false;
+											document.getElementById("message_entreeg").value = ""
+											document.getElementById("message_sortieg").value = ""
+											document.getElementById("Anumg1").checked = false;
+											document.getElementById("Anumg2").checked = false;
+											document.getElementById("Anumg3").checked = false;
+											document.getElementById("Anumg4").checked = false;
+											document.getElementById("Snumg1").checked = false;
+											document.getElementById("Snumg2").checked = false;
+											document.getElementById("Snumg3").checked = false;
+											document.getElementById("Snumg4").checked = false;
+											shownumber();
+											
+											geoembarquee($("#selectzge").val(), document.getElementById("gstrat"), document.getElementById("gact"), "", "", 
+															document.getElementById("Anumg1"), document.getElementById("Anumg2"), document.getElementById("Anumg3"), document.getElementById("Anumg4"), 
+															document.getElementById("Snumg1"), document.getElementById("Snumg2"), document.getElementById("Snumg3"), document.getElementById("Snumg4"),
+															0, 0, 0, 0);	
+										}	
+									});	
+									
+									function clearrect(r){
+										for(var i=0; i<r.length; i++){
+											map.removeLayer(r[i]);
+										}
+									}
+									
+									function centremap(){
+										map.setView(new L.LatLng(47.081012, 2.398782), 6);
+									}
+									
+									function drawcarreone(latzge1, lngzge1, latzge2, lngzge2, n){
+										bounds = [[latzge1, lngzge1], [latzge2, lngzge2]];
+										rect = new L.rectangle(bounds, {color: '#0000FF', weight: 3});
+										Lrect.push(rect);
+										if(!latzge1 || !lngzge1 || !latzge2 || !lngzge2){
+											centremap(); clearrect(Lrect);
+											editableLayers.clearLayers();
+										}else{
+											clearrect(Lrect);
+											rect.addTo(map);
+											editableLayers.addLayer(rect);
+											l = (latzge1 + latzge2) / 2;  	m = (lngzge1 + lngzge2) / 2; 
+											map.setView(new L.LatLng(l, m),14);
+											rect.bindPopup("Zone "+n);
+										}
+									}
+									
+									function drawcarre(latzge1, lngzge1, latzge2, lngzge2, n){	
+										bounds = [[latzge1, lngzge1], [latzge2, lngzge2]];
+										rect = new L.rectangle(bounds, {color: '#0000FF', weight: 3});
+										Lrect.push(rect);
+										editableLayers.clearLayers();
+										if(!!latzge1 || !!lngzge1 || !!latzge2 || !!lngzge2){
+											rect.addTo(map);
+											l = (latzge1 + latzge2) / 2;  	m = (lngzge1 + lngzge2) / 2; 
+											map.setView(new L.LatLng(l, m),10);
+											rect.bindPopup("Zone "+n);
+										}
+									}
+									
+									function showcthisgsmgeo(){
+										if(document.getElementById("modefonctgeo").value == "normal"){
+											$("#gsmgeo").show(); $("#labelgsmgeo").show();
+										}else{
+											$("#gsmgeo").hide(); $("#labelgsmgeo").hide(); 
+											$("#rg").hide(); $("#rtg").hide();
+										}
+									}
+								</script>
+							</div>
+						</div>
+						<div style="border: 0; height: 1px; background: #aaa; background-image: linear-gradient(to right, lightgray, lightgray, lightgray);"></div>
+						<br/>
+					</form>
+					<form class="form-horizontal" role="form">
+						<script>//$('#').bootstrapToggle();
+							// if(versionBaliseGlobal == "48" || versionBaliseGlobal == "51" || versionBaliseGlobal == "55" || versionBaliseGlobal == "57"){
+								// $('#').show();
+							// }else{
+								// $('#').hide();
+							// }
+						</script>
+						<!--div class="col-md-offset-3">
+							<input id="entreedezone" type="radio">&nbsp; &nbsp; <b>Entr&eacute;e de zone</b> &nbsp; <input id="sortiedezone" type="radio">&nbsp; &nbsp; <b>Sortie de zone</b>
+						</div-->
+						<br/>
+						<div class="col-md-6">
+							<div class="row">&nbsp; &nbsp; &nbsp;<b>Fr&eacute;quence d'acquisition des positions</b></div>
+							<div class="form-group">
+								<label for="trajetacpgeo" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En trajet:</label>
+								<div class="col-md-3">
+									<select name="trajetacpgeo" id="trajetacpgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="5" >5s</option><option value="10" >10s</option><option value="15" >15s</option><option value="20" >20s</option><option value="25" >25s</option>
+										<option value="30" >30s</option><option value="35" >35s</option><option value="40" >40s</option><option value="45" >45s</option>
+										<option value="60" selected>1mn</option><option value="90" >1mn30s</option><option value="120" >2mn</option><option value="150" >2mn30s</option><option value="180" >3mn</option>
+										<option value="300" >5mn</option><option value="600" >10mn</option><option value="900" >15mn</option><option value="1200" >20mn</option><option value="1800" >30mn</option>
+										<option value="3600" >1h</option><option value="5400" >1h30</option><option value="7200" >2h</option><option value="10800" >3h</option><option value="14400" >4h</option>
+										<option value="18000" >5h</option><option value="21600" >6h</option><option value="25200" >7h</option><option value="28800" >8h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="timingacpgeo" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En timing:</label>
+								<div class="col-md-3">
+									<select name="timingacpgeo" id="timingacpgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="8" >8mn</option><option value="30" >30mn</option><option value="60" >1h</option><option value="120" >2h</option><option value="240" >4h</option><option value="360" >6h</option>
+										<option value="480" >8h</option><option value="720" >12h</option><option value="1440" >24h</option><option value="600" >600mn</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="arretacpgeo" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En arr&ecirc;t:</label>
+								<div class="col-md-3">
+									<select name="arretacpgeo" id="arretacpgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="300" >5mn</option><option value="600" >10mn</option><option value="900" >15mn</option><option value="1200" >20mn</option><option value="1800" >30mn</option>
+										<option value="3600" >1h</option><option value="5400" >1h30</option><option value="7200" >2h</option><option value="10800" >3h</option><option value="14400" >4h</option>
+										<option value="18000" >5h</option><option value="21600" >6h</option><option value="25200" >7h</option><option value="28800" >8h</option><option value="43200" >12h</option><option value="64800" >18h</option>
+									</select>
+								</div>
+							</div>
+							<script>
+							function showcthisgeo(){
+								if(document.getElementById("gsmgeo").value == "eco" || document.getElementById("gsmgeo").value == "eco+"){
+									$("#rg").show(); $("#rtg").show();
+								}else{
+									$("#rg").hide(); $("#rtg").hide();
+								}
+							}
+							</script>
+							<div class="form-group">
+								<label id="labelgsmgeo" for="gsmgeo" class="col-md-4 control-label" style="display:none; font-weight: normal"><b>GSM :</b><?php //echo _('configuration_deplacementtempsabscencevib'); ?></label>
+									<div class="col-md-5">
+										<select name="gsmgeo" id="gsmgeo" class="form-control  input-xs" onchange="showcthisgeo();" style="display:none; margin-top: 6px">
+											<option value="permanent" >Permanent</option><option value="eco" >Actif &agrave; l'arr&ecirc;t</option><option value="eco+" >Actif en mouvement</option>
+										</select>
+									</div>							
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="row">&nbsp; &nbsp; &nbsp;<b>Fr&eacute;quence de rapatriement des positions</b></div>
+							<div class="form-group">
+								<label for="trajetrapgeo" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En trajet:</label>
+								<div class="col-md-3">
+									<select name="trajetrapgeo" id="trajetrapgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="0" >Imm&eacute;diat</option>
+										<option value="1" selected>1mn</option><option value="2" >2mn</option><option value="3" >3mn</option><option value="4" >4mn</option><option value="5" >5mn</option>
+										<option value="10" >10mn</option><option value="15" >15mn</option><option value="20" >20mn</option><option value="30" >30mn</option>
+										<option value="60" >1h</option><option value="90" >1h30</option><option value="120" >2h</option><option value="180" >3h</option><option value="240" >4h</option>
+										<option value="300" >5h</option><option value="360" >6h</option><option value="420" >7h</option><option value="480" >8h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="timingrapgeo" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En timing:</label>
+								<div class="col-md-3">
+									<select name="timingrapgeo" id="timingrapgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="8" >8mn</option><option value="30" >30mn</option><option value="60" >1h</option><option value="120" >2h</option><option value="240" >4h</option><option value="360" >6h</option>
+										<option value="480" >8h</option><option value="720" >12h</option><option value="1440" >24h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="arretrapgeo" class="col-md-6 control-label" style="font-weight: normal">&nbsp; &nbsp; En arr&ecirc;t:</label>
+								<div class="col-md-3">
+									<select name="arretrapgeo" id="arretrapgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="5" >5mn</option><option value="10" >10mn</option><option value="15" >15mn</option><option value="20" >20mn</option><option value="30" >30mn</option>
+										<option value="60" >1h</option><option value="90" >1h30</option><option value="120" >2h</option><option value="180" >3h</option><option value="240" >4h</option>
+										<option value="300" >5h</option><option value="360" >6h</option><option value="420" >7h</option><option value="480" >8h</option><option value="720" >12h</option><option value="1440" >24h</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label id="rg" for="retardgeo" class="col-md-6 control-label" style="display:none; font-weight: normal;"><b>Retard &agrave; l'activation :</b><?php //echo _('configuration_deplacementtempsabscencevib'); ?></label>
+								<div id="rtg" class="col-md-3" style="display:none;">
+									<select name="retardgeo" id="retardgeo" class="form-control  input-xs" style="margin-top: 6px">
+										<option value="0">0mn</option><option value="2">2mn</option><option value="5">5mn</option><option value="10">10mn</option><option value="30">30mn</option><option value="60">1h</option><option value="120">2h</option>
+									</select>
+								</div>							
+							</div>
+						</div>
+						<div class="col-md-offset-11">
+							<input type="button" class="btn btn-default btn-xs" onClick="validgeo()" value="<?php echo _('valider'); ?> " style="margin-top: 6px">
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>	
+	</div>	
+</div>	

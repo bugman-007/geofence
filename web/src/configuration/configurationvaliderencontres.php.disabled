@@ -1,0 +1,124 @@
+<?php
+/**
+ * Created by franck
+ **/
+    session_start();
+    include '../function.php';		// pour utiliser wd_remove_accents();
+    include '../dbgpw.php';
+    include '../dbconnect2.php';
+
+
+    $_SESSION['CREATED'] = time();
+	
+	$find = $_GET["find"];
+	if($find == 0){
+		$idTracker=$_GET["idTracker"];
+		$nomDatabaseGpw=$_GET["nomDatabaseGpw"];
+		$ipDatabaseGpw=$_GET["ipDatabaseGpw"];
+		
+		/************* Recuperer iddestset1 *******************/
+		try
+		{
+			$bdd = new PDO('mysql:host='.$ipDatabaseGpw.';dbname='.$nomDatabaseGpw, $db_user_2, $db_pass_2);
+		}
+		catch (Exception $e)
+		{
+			die();
+		}
+		
+		$stmt = $bdd->prepare("SELECT Id_DestSet1 FROM twarnings2 WHERE Id_tracker=:Id_tracker LIMIT 0,1");
+		$stmt->bindParam(':Id_tracker',$idTracker);
+		$stmt->execute();
+		
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			$iddestset1 = $row["Id_DestSet1"];
+		}
+		
+		$bdd = null;
+		
+		/************select into tmessages *************/
+		try
+		{
+			$bdd = new PDO('mysql:host='.$ipDatabaseGpw.';dbname='.$nomDatabaseGpw, $db_user_2, $db_pass_2);
+		}
+		catch (Exception $e)
+		{
+			die();
+			//die('Erreur : ' . $e->getMessage());
+		}
+		
+		/*on insere les données db*/
+		$stmt = $bdd->prepare("SELECT * FROM trencontres WHERE IdTrackerMain=:IdTrackerMain AND ID_DestSet1=:ID_DestSet1");
+		$stmt->bindParam(':IdTrackerMain',$idTracker);
+		$stmt->bindParam(':ID_DestSet1',$iddestset1);
+		$stmt->execute();
+		
+		$data = [];
+		
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			$data = [ "Id" => $row["IdRencontre"], 
+					  "Balise1" => $row["IdTrackerMain"],
+					  "Balise2" => $row["IdTrackerCible"],
+					  "Distance" => $row["Distance"],
+					  "Filtrage" => $row["FiltrageSMS"],
+					  "Methode" => $row["Dest_Method"],
+					  "Destinataire" => $row["ID_DestSet1"]
+					];
+		}
+		print_r (json_encode($data));
+		
+		$bdd = null;
+    }else if($find == 1){
+		$idTracker=$_GET["idTracker"];
+		$balise=$_GET["balise"];
+		$distance=$_GET["distance"];
+		$filtrage=$_GET["filtrage"];
+		$desmethod=$_GET["desmethod"];
+
+		$nomDatabaseGpw=$_GET["nomDatabaseGpw"];
+		$ipDatabaseGpw=$_GET["ipDatabaseGpw"];
+		
+		/************* Recuperer iddestset1 *******************/
+		try
+		{
+			$bdd = new PDO('mysql:host='.$ipDatabaseGpw.';dbname='.$nomDatabaseGpw, $db_user_2, $db_pass_2);
+		}
+		catch (Exception $e)
+		{
+			die();
+		}
+		
+		$stmt = $bdd->prepare("SELECT Id_DestSet1 FROM twarnings2 WHERE Id_tracker=:Id_tracker LIMIT 0,1");
+		$stmt->bindParam(':Id_tracker',$idTracker);
+		$stmt->execute();
+		
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			$iddestset1 = $row["Id_DestSet1"];
+		}
+		
+		$bdd = null;
+		
+		/************Insert into tmessages *************/
+		try
+		{
+			$bdd = new PDO('mysql:host='.$ipDatabaseGpw.';dbname='.$nomDatabaseGpw, $db_user_2, $db_pass_2);
+		}
+		catch (Exception $e)
+		{
+			die();
+			//die('Erreur : ' . $e->getMessage());
+		}
+		
+		/*on insere les données db*/
+		$stmt = $bdd->prepare("INSERT INTO trencontres SET IdTrackerMain=:IdTrackerMain, IdTrackerCible=:IdTrackerCible, Distance=:Distance, FiltrageSMS=:FiltrageSMS, Dest_Method=:Dest_Method, ID_DestSet1=:ID_DestSet1");
+		$stmt->bindParam(':IdTrackerMain',$idTracker);
+		$stmt->bindParam(':IdTrackerCible',$balise);
+		$stmt->bindParam(':Distance',$distance);
+		$stmt->bindParam(':FiltrageSMS',$filtrage);
+		$stmt->bindParam(':Dest_Method',$desmethod);
+		$stmt->bindParam(':ID_DestSet1',$iddestset1);
+		$stmt->execute();
+		
+		$bdd = null;
+	}
+?>

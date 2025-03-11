@@ -1,0 +1,1500 @@
+# French translations for PACKAGE package.
+# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-29 16:23+0200\n"
+"PO-Revision-Date: 2017-12-20 15:43+0100\n"
+"Last-Translator: EMAIL@ADDRESS\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.0.5\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: ////////////////////////////////// index
+msgid "index_connect"
+msgstr "Connectez-vous"
+
+msgid "index_nomutilisateur"
+msgstr "Utilisateur"
+
+msgid "index_motdepasse"
+msgstr "Mot de passe"
+
+#: ////////////////////////////////// layout
+msgid "layout_client"
+msgstr "Client"
+
+msgid "layout_allclient"
+msgstr "[TOUS CLIENTS]"
+
+msgid "layout_groupebalise"
+msgstr "Groupes Balises"
+
+msgid "layout_allgroups"
+msgstr "[TOUS GROUPES]"
+
+msgid "layout_listbalise"
+msgstr "Liste Balises"
+
+msgid "layout_toutcocher"
+msgstr "Tout cocher"
+
+msgid "layout_toutdecocher"
+msgstr "Tout décocher"
+
+msgid "layout_modesuivi"
+msgstr "Mode Suivi"
+
+msgid "layout_infotrafic"
+msgstr "Infotrafic"
+
+msgid "layout_geofencing"
+msgstr "Avec Geofencing"
+
+msgid "layout_derniereposition"
+msgstr "Dernière Position"
+
+msgid "layout_cartoposition"
+msgstr "Carto Position"
+
+msgid "layout_rapport"
+msgstr "Rapport"
+
+msgid "layout_etatbalise"
+msgstr "Etat Balise"
+
+msgid "layout_deconnexion"
+msgstr "Deconnexion"
+
+msgid "layout_pointinteret"
+msgstr "Point Interet"
+
+#: ////////////////////////////////// rapport
+msgid "rapport_rapportinstant"
+msgstr "Rapport Instantané"
+
+msgid "rapport_choisirformat"
+msgstr "Choisir le format du rapport"
+
+msgid "rapport_contenurapport"
+msgstr "Configurer le contenu du rapport"
+
+msgid "rapport_convertir"
+msgstr "Convertir"
+
+msgid "rapport_etape"
+msgstr "Etapes"
+
+msgid "rapport_gaznaturel"
+msgstr "Gaz Naturel"
+
+msgid "rapport_gazole"
+msgstr "Diesel"
+
+msgid "rapport_enregistrer_carburant"
+msgstr "Enregistrer"
+
+msgid "rapport_retour"
+msgstr "Retour"
+
+msgid "rapport_litredecarburants100km"
+msgstr "Litres de carburants / 100 km"
+
+msgid "rapport_modifierinfoscarburants"
+msgstr "Modifier les infos carburants"
+
+msgid "rapport_supprimerinfoscarburants"
+msgstr "Supprimer les infos carburants"
+
+msgid "rapport_saisirlitreintervalle"
+msgstr "(Facultatif) Saisir le litre total de carburants consommés selon l'intervalle de temps"
+
+msgid "rapport_graphevitesse"
+msgstr "Graphe Vitesse"
+
+msgid "rapport_pasdetrajetintervalle"
+msgstr "Pas de trajet dans cet intervalle de temps"
+
+msgid "rapport_veuillezselecttypecarburant"
+msgstr "Veuillez sélectionner un type de carburant"
+
+msgid "rapport_saisirvaleurlitrecarburant100km"
+msgstr "Veuillez saisir une valeur pour : Litres de carburants / 100 km"
+
+msgid "rapport_consocarburant"
+msgstr "Consommations de carburants"
+
+msgid "rapport_typedecarburants"
+msgstr "Type de carburants"
+
+msgid "rapport_litrekm"
+msgstr "Litres / km"
+
+msgid "rapport_litre100km"
+msgstr "Litres / 100km"
+
+msgid "rapport_emissionco2"
+msgstr "Emission de CO2"
+
+msgid "rapport_litreconsommes"
+msgstr "Litres consommés "
+
+msgid "rapport_confirmmodifcarburant"
+msgstr "Le carburant et le litre par 100km ont bien été modifié pour"
+
+msgid "rapport_confirmcreercarburant"
+msgstr "Le carburant et le litre par 100km ont bien été créé pour"
+
+msgid "rapport_confirmsupprimercarburant"
+msgstr "Le carburant et le litre par 100km ont bien été supprimé pour"
+
+msgid "rapport_generersurintervalle"
+msgstr "Générer le rapport sur l'intervalle de temps"
+
+msgid "rapport_genererrapport"
+msgstr "Générer Rapport"
+
+msgid "rapport_contenuetape"
+msgstr "Configurer le rapport d'étapes"
+
+msgid "rapport_aveccarto"
+msgstr "Avec Carto"
+
+msgid "rapport_genereretapesurintervalle"
+msgstr "Générer le rapport de cette étape"
+
+msgid "rapport_genereretape"
+msgstr "Générer Etape"
+
+msgid "rapport_rapportauto"
+msgstr "Rapport Automatique"
+
+msgid "rapport_creernouveau"
+msgstr "Créer un nouveau rapport"
+
+msgid "rapport_modifierrapport"
+msgstr "Modifier les rapports automatiques"
+
+msgid "rapport_jourenvoi"
+msgstr "Jour d'envoi"
+
+msgid "rapport_choisirtype"
+msgstr "Choisir le type de rapport automatique"
+
+msgid "rapport_objetmessage"
+msgstr "Saisir/modifier l'objet et le message d'envoi"
+
+msgid "rapport_objet"
+msgstr "Objet"
+
+msgid "rapport_choisirdateheure"
+msgstr "Saisir/modifier la date ou l'heure du prochain envoi "
+
+msgid "rapport_prochainenvoi"
+msgstr "Prochain Envoi"
+
+msgid "rapport_choisirformatauto"
+msgstr "Saisir/modifier le format du rapport"
+
+msgid "rapport_enligne"
+msgstr "En ligne"
+
+msgid "rapport_choisirdestinataire"
+msgstr "Saisir/modifier le(s) destinataire(s) du rapport automatique"
+
+msgid "rapport_supprimer"
+msgstr "Supprimer Rapport"
+
+msgid "rapport_enregistrer"
+msgstr "Enregistrer Rapport"
+
+msgid "rapport_choisirtypeselect"
+msgstr "Choisir un type"
+
+msgid "rapport_unefois"
+msgstr "Unique"
+
+msgid "rapport_journalier"
+msgstr "Journalier"
+
+msgid "rapport_journalierplus"
+msgstr "Journalier Avancé"
+
+msgid "rapport_hebdomadaire"
+msgstr "Hebdomadaire"
+
+msgid "rapport_hebdomadaireplus"
+msgstr "Hebdomadaire (plus)"
+
+msgid "rapport_mensuel"
+msgstr "Mensuel"
+
+msgid "rapport_mensuelplus"
+msgstr "Mensuel (plus)"
+
+msgid "rapport_alert_pasdetape"
+msgstr "Il n'y a pas d'étapes de déplacement sur la période que vous avez choisie"
+
+msgid "rapport_alert_changerheure"
+msgstr "Changer seulement l'heure"
+
+msgid "rapport_alert_pasrapportauto"
+msgstr "Il n'existe pas encore de rapports automatiques"
+
+msgid "rapport_alert_changerheuredate"
+msgstr "Changer seulement l'heure, la date est modifiable via le jour d'envoi"
+
+msgid "rapport_alert_supprimer"
+msgstr "a été supprimé"
+
+msgid "rapport_alert_modifier"
+msgstr "Le rapport automatique a bien été modifié pour"
+
+msgid "rapport_alert_creer"
+msgstr "Le rapport automatique a bien été crée pour"
+
+msgid "rapport_pasencoreenregistrer"
+msgstr "n'est pas encore enregistré"
+
+msgid "rapport_dernierjourdumois"
+msgstr "du dernier jour de ce mois"
+
+msgid "rapport_alert_excel_multiple"
+msgstr "Pour exporter le rapport sous format Excel ou en ligne, les tables étapes et stops seront rédigées séparément. Merci de choisir, soit le rapport des étapes , soit le rapport des stops"
+
+msgid "rapport_alert_excel_pdf"
+msgstr "Le graphe de vitesse ne peut être rédigé que sous format PDF"
+
+msgid "rapport_confirm_supprimer"
+msgstr "Voulez-vous vraiment supprimer ce rapport automatique"
+
+msgid "rapport_confirm_enregistrer"
+msgstr "Voulez-vous vraiment enregistrer ce rapport automatique pour"
+
+msgid "rapport_confirm_warningallbalises"
+msgstr "ATTENTION : Ce rapport automatique sera enregistré pour toutes les balises selectionnées"
+
+msgid "rapport_periodeentre"
+msgstr "Période entre"
+
+msgid "rapport_informationbalise"
+msgstr "Informations de la balise"
+
+msgid "rapport_resumeetape"
+msgstr "Résumé des étapes"
+
+msgid "rapport_resumearret"
+msgstr "Résumé des arrêts"
+
+msgid "rapport_resumeadresse"
+msgstr "Résumé des adresses"
+
+msgid "rapport_resumegraphevitesse"
+msgstr "Graphe de vitesse sur l'ensemble des trajets"
+
+msgid "rapport_et"
+msgstr "et"
+
+msgid "rapport_lieu"
+msgstr "Lieu"
+
+msgid "rapport_dureedestrajets"
+msgstr "Durée des trajets"
+
+msgid "rapport_dureedesarrets"
+msgstr "Durée de l'arrêt"
+
+msgid "rapport_kmsparcourus"
+msgstr "Kms parcourus"
+
+msgid "rapport_nombrepositions"
+msgstr "Nombre de positions"
+
+msgid "rapport_nombreetapes"
+msgstr "Nombre d'étapes"
+
+msgid "rapport_datedebut"
+msgstr "Date Début"
+
+msgid "rapport_datefin"
+msgstr "Date Fin"
+
+msgid "rapport_lieudebut"
+msgstr "Lieu Début"
+
+msgid "rapport_lieufin"
+msgstr "Lieu Fin"
+
+msgid "rapport_dureetrajet"
+msgstr "Duree Trajet"
+
+msgid "rapport_dureearret"
+msgstr "Duree Arret"
+
+msgid "rapport_lieustop"
+msgstr "Lieu Stop"
+
+msgid "rapport_commentaire"
+msgstr "Commentaire"
+
+msgid "rapport_rapportgeo3x"
+msgstr "Rapport Geofence"
+
+msgid "rapport_informationetape"
+msgstr "Informations de l'étape"
+
+msgid "rapport_cartosurletape"
+msgstr "Carto sur l'étape"
+
+msgid "rapport_graphevitessesurletape"
+msgstr "Graphe de vitesse sur l'étape "
+
+msgid "rapport_modaltitre_rapportadresse"
+msgstr "Rapport des adresses"
+
+msgid "rapport_modalcontenu1_rapportadresse"
+msgstr "Rapport détaillant les endroits où la balise s'est déplacé"
+
+msgid "rapport_modalremarque1_rapportadresse"
+msgstr "Le chargement des adresses prend beaucoup de temps (jusqu'à quelques minutes)."
+
+msgid "rapport_modalremarque2_rapportadresse"
+msgstr "Si le nombre de positions à convertir en adresse est supérieur à 100, on devrait refaire le rapport plusieurs fois. Dans ce cas, Il est conseillé de confier au rapport automatique (type rapport \"une fois\") pour le recevoir par mail tranquillement."
+
+msgid "rapport_modaltitre_genererrapport"
+msgstr "Générer le rapport sur un intervalle de temps"
+
+msgid "rapport_modalcontenu1_genererrapport"
+msgstr "Permet de créer le rapport qui comporte la courbe de vitesse, les étapes et les arrêts, selon votre choix (cases cochées/décochées ci-dessus)"
+
+msgid "rapport_modalremarque1_genererrapport"
+msgstr "Vous pouvez choisir différents types de rapport exporté, sauf la courbe de vitesse doit être rédigée sous format pdf. Pour la bonne visibilité, si vous exportez le rapport sous format excel ou en ligne, la table des étapes et la table des arrêts ne peuvent pas être dans le même rapport. Il faut le faire 2 fois"
+
+msgid "rapport_modaltitre_genererrapportetape"
+msgstr "Générer le rapport sur chaque étape"
+
+msgid "rapport_modalcontenu1_genererrapportetape"
+msgstr "Après avoir générer le rapport général, vous pouvez faire un rapport sur une etape dans la liste ci-dessus (inclut la carto et/ou la courbe de vitesse)"
+
+msgid "rapport_modaltitre_rapportauto"
+msgstr "Générer le rapport automatique"
+
+msgid "rapport_modalcontenu1_rapportauto"
+msgstr "Permet de créer le rapport automatique qui comporte les étapes, les arrêts et la courbe de vitesse. Il sera envoyé suivant les emails et à l'heure d'envoi renseignés.  Il y a 4 types (et 3 extensions de type \"+\") de rapport automatique."
+
+msgid "rapport_modalcontenu2_rapportauto"
+msgstr "Une fois: comme le rapport instantané (traditionnel), on doit choisir un intervalle de temps pour le contenu du rapport. La date d'envoi de l'année en cours doit être précisée aussi."
+
+msgid "rapport_modalcontenu3_rapportauto"
+msgstr "Journalier: on recevra chaque jour le mail contenant un rapport entre \"Heure début\" et \"Heure fin\" de la journée (que vous pouvez modifier)."
+
+msgid "rapport_modalcontenu4_rapportauto"
+msgstr "Hebdomadaire: Le contenu du rapport contient l'événement entre \"jour début\" et \"jour fin\" (modifiable de lundi à dimanche)."
+
+msgid "rapport_modalcontenu5_rapportauto"
+msgstr "Mensuel: Si le \"jour fin\" est le 31 du mois, le rapport sera envoyé à la fin du mois quelque soit son nombre de jour (28, 29 ou 30)."
+
+msgid "rapport_modalremarque1_rapportauto"
+msgstr "Pour le rapport journalier, il faut préciser l'heure d'envoi. Pour le rapport hebdomadaire et mensuel, il faut choisir en plus le jour d'envoi . Par défaut, ce sera dimanche (hebdomadaire) et la fin du mois (mensuel)"
+
+msgid "rapport_modalremarque2_rapportauto"
+msgstr "Rapport \"journalier +\", \"hebdomadaire+\" et \"mensuel +\" permettent de dépasser la période en cours (rapport rallongé).  Par exemple, pour le rapport  \"hebdomadaire+\", on aura ainsi la possiblité de résumer les événements du mardi de la semaine en cours au mardi de la semaine+1.Du coup vous recevrez aussi les rapports  au moment renseigné de la période+1."
+
+msgid "rapport_modaltitre_rapportautoprochainenvoi"
+msgstr "Générer le rapport automatique : Prochain envoi"
+
+msgid "rapport_modalcontenu1_rapportautoprochainenvoi"
+msgstr "Pour le rapport journalier, hebdomadaire et mensuel, l'heure du \"prochain envoi\" est modifiable mais pas la date."
+
+msgid "rapport_modalcontenu2_rapportautoprochainenvoi"
+msgstr "La date du prochain envoi change en fonction du \"jour d'envoi\"."
+
+msgid "rapport_supprimerinfoscarburant"
+msgstr "Voulez-vous vraiment supprimer les informations carburants pour la balise"
+
+#: ////////////////////////////////// Geofencing
+msgid "geofencing_parametre"
+msgstr "Paramètre"
+
+msgid "geofencing_fichierlog"
+msgstr "Fichier Log"
+
+msgid "geofencing_choisirnumerozone"
+msgstr "Choisissez un n° de zone"
+
+msgid "geofencing_toutes"
+msgstr "Toutes"
+
+msgid "tout"
+msgstr "Tout"
+
+msgid "geofencing_adresseapproxizone"
+msgstr "Pour rechercher une adresse cliquez sur l'icône loupe de la carto"
+
+msgid "geofencing_cliquersurcartopolygone"
+msgstr "Cliquez sur la carto pour avoir différents points du polygone"
+
+msgid "geofencing_warningpolygonelarge"
+msgstr "Attention ! Le polygone doit être suffisamment large"
+
+msgid "geofencing_messageentree"
+msgstr "Message d'entrée"
+
+msgid "geofencing_messagesortie"
+msgstr "Message de sortie"
+
+msgid "geofencing_alerteentree"
+msgstr "Alerte d'entrée de zone"
+
+msgid "geofencing_alertefin"
+msgstr "Alerte de sortie de zone"
+
+msgid "geofencing_entree"
+msgstr "L'entrée"
+
+msgid "geofencing_sortie"
+msgstr "La sortie"
+
+msgid "geofencing_supprimerzone"
+msgstr "Supprimer la zone"
+
+msgid "geofencing_validerzone"
+msgstr "Valider la zone"
+
+msgid "geofencing_alert_choisirzoneprecise"
+msgstr "Veuillez d'abord choisir un numéro de zone avant de definir une zone"
+
+msgid "geofencing_alert_endroitapproxi"
+msgstr "Endroit approximatif ou vous allez définir la zone"
+
+msgid "geofencing_alert_effacerzone"
+msgstr "Vous avez bien effacé la zone"
+
+msgid "geofencing_alert_warningmultiplebalises"
+msgstr "ATTENTION ! Toutes les balises sélectionnées vont être modifiées"
+
+msgid "geofencing_alert_fermerpolycone"
+msgstr "Veuillez fermer le polygone avant de valider la zone"
+
+msgid "geofencing_alert_redefinirlazone"
+msgstr "Veuillez placer au moins 3 points avant de valider la zone"
+
+msgid "geofencing_alert_balisebienconfig"
+msgstr "Vous avez bien configuré le géofencing"
+
+msgid "geofencing_modaletitle_activealarme"
+msgstr "Activation d'alarme"
+
+msgid "geofencing_modalecontenu_activealarme"
+msgstr "Pour utiliser l'alarme, cocher la case. Si l'alarme n’est plus utilisée, décocher la case"
+
+msgid "geofencing_modaletitle_alert"
+msgstr "Message d'alerte"
+
+msgid "geofencing_modalecontenu1_alert"
+msgstr "Personnaliser le message d’alerte d’apparition (30 caractères max)"
+
+msgid "geofencing_modalecontenu2_alert"
+msgstr "et/ou personnaliser le message d’alerte de disparition (30 caractères max)."
+
+msgid "geofencing_modifierzonedejatracee"
+msgstr "Voulez-vous vraiment modifier la zone déjà tracée auparavant ?"
+
+msgid "geofencing_choissirdabordzone"
+msgstr "Choisissez d'abord un numéro de zone"
+
+msgid "geofencing_veuillezfermerpolygone"
+msgstr "Veuillez fermer le polygone avant de valider la zone."
+
+msgid "geofencing_saisirmessageentreesortie"
+msgstr "Vous n'avez pas encore saisi le contenu des messages d'entrée et de sortie de la zone geofencing"
+
+msgid "geofencing_resetgeofencing"
+msgstr "Redéfinir la zone ? La zone précédement tracée va être effacée"
+
+msgid "geofencing_voulezvoussupprimerzone"
+msgstr "Voulez-vous vraiment supprimer la zone"
+
+msgid "geofencing_voulezvouscreermodifierzone"
+msgstr "Voulez-vous vraiment créer/modifier la zone"
+
+msgid "geofencing_fermerpolygone"
+msgstr "Fermer le polygone"
+
+msgid "geofencing_warningmultiplebalise"
+msgstr "ATTENTION ! Toutes les balises sélectionnées vont être modifiées"
+
+#: ////////////////////////////////// POINT INTERET
+msgid "ptinteret_insererptinteret"
+msgstr "Inserer un point interet"
+
+msgid "ptinteret_soitsaisiradresse"
+msgstr "Soit en saisissant une adresse (icône loupe de la carto)"
+
+msgid "ptinteret_soitcliquer"
+msgstr "Soit en cliquant sur la carte, en positionnant votre point d'interet"
+
+msgid "ptinteret_visualiser"
+msgstr "Visualiser"
+
+msgid "ptinteret_visualiserunpoi"
+msgstr "Visualiser un POI en cliquant sur la table des positions"
+
+msgid "ptinteret_messagearrive"
+msgstr "Message d'arrivée"
+
+msgid "ptinteret_messagedepart"
+msgstr "Message de départ"
+
+msgid "ptinteret_alertearrivee"
+msgstr "Alerte d'arrivee de zone"
+
+msgid "ptinteret_alertedepart"
+msgstr "Alerte de depart de zone"
+
+msgid "ptinteret_arrive"
+msgstr "Arrivé"
+
+msgid "ptinteret_depart"
+msgstr "Départ"
+
+msgid "ptinteret_nompoi"
+msgstr "Nom POI"
+
+msgid "ptinteret_rayon"
+msgstr "Rayon"
+
+msgid "ptinteret_confirmvaliderconfigpoi"
+msgstr "Vous avez bien configuré le poi"
+
+msgid "ptinteret_pourlabalise"
+msgstr "pour la balise"
+
+msgid "ptinteret_veuillezchoisirunpoi"
+msgstr "Veuillez choisir un POI via la Table des positions"
+
+msgid "ptinteret_passaisiadressepostale"
+msgstr "Vous n'avez pas saisi d'adresse postale"
+
+msgid "ptinteret_inserernouveaupoi"
+msgstr "Voulez-vous vraiment insérer un nouveau POI"
+
+msgid "ptinteret_adressepostale"
+msgstr "Adresse Postale"
+
+msgid "ptinteret_rayonconsideration"
+msgstr "Rayon considération"
+
+msgid "ptinteret_htmlurl"
+msgstr "Lien html ou url de l'image"
+
+msgid "ptinteret_enregistrerpoi"
+msgstr "Enregistrer Le POI"
+
+msgid "ptinteret_modifierconfiguration"
+msgstr "Voulez-vous vraiment modifier la configuration de(s) message(s) d'alerte(s) sur"
+
+msgid "ptinteret_supprimerpoi"
+msgstr "Voulez-vous vraiment supprimer ce POI"
+
+msgid "ptinteret_saisirmessagearriveedepart"
+msgstr "Vous n'avez pas encore saisi le contenu des messages d'arrivée et de départ"
+
+#: ////////////////////////////////// Configuration
+msgid "configuration_parametresavances"
+msgstr "Paramètres avancés"
+
+msgid "configuration_modefonctionnementtempsreel"
+msgstr "Mode de fonctionnement /  Temps reel"
+
+msgid "configuration_detectpdeplacementarret"
+msgstr "Détection déplacement / arrêt"
+
+msgid "configuration_alerteetsms"
+msgstr "Alerte et SMS"
+
+msgid "configuration_lectureparametrebalise"
+msgstr "Lecture des paramètres de la balise"
+
+msgid "configuration_freqacquiposition"
+msgstr "Fréquence d'acquisition des positions"
+
+msgid "configuration_freqrapatriposition"
+msgstr "Fréquence de rapatriement des positions"
+
+msgid "configuration_alarret"
+msgstr "A l'arrêt"
+
+msgid "configuration_entiming"
+msgstr "En timing"
+
+msgid "configuration_tempsreelposition2sec"
+msgstr "Temps réel (position toutes les 3 sec)"
+
+msgid "configuration_immediatpendant"
+msgstr "Immédiat pendant"
+
+msgid "configuration_surappelpendant"
+msgstr "Sur appel pendant"
+
+msgid "configuration_audemarragependant"
+msgstr "A l'initialisation pendant"
+
+msgid "configuration_lire"
+msgstr "Lire"
+
+msgid "configuration_modenormal"
+msgstr "Mode normal"
+
+msgid "configuration_modehistorique"
+msgstr "Mode historique"
+
+msgid "configuration_modeperiscope"
+msgstr "Mode périscope"
+
+msgid "configuration_modesilencieux"
+msgstr "Mode silencieux"
+
+msgid "configuration_surdeplacementdesactive"
+msgstr "Sur déplacement désactivé"
+
+msgid "configuration_surdeplacementactive"
+msgstr "Sur déplacement activé"
+
+msgid "configuration_parametredetectdeplacementarret"
+msgstr "Paramètres de détection déplacement / arrêt"
+
+msgid "configuration_deplacementseuilvitesse"
+msgstr "Détection déplacement (seuil Vitesse)"
+
+msgid "configuration_deplacementtempsvib"
+msgstr "Détection déplacement (temps VIB)"
+
+msgid "configuration_deplacementtempsabscencevib"
+msgstr "Détection arrêt (temps d'absence VIB)"
+
+msgid "configuration_alert"
+msgstr "Alerte"
+
+msgid "configuration_alarme"
+msgstr "Alarme"
+
+msgid "configuration_alarmedeplacement"
+msgstr "Alarme Déplacement"
+
+msgid "configuration_alarmealimentation"
+msgstr "Alarme Alimentation"
+
+msgid "configuration_alarmeparking"
+msgstr "Alarme Parking"
+
+msgid "configuration_alarmebatterie"
+msgstr "Alarme Batterie"
+
+msgid "configuration_filtrage"
+msgstr "Filtrage"
+
+msgid "configuration_normalement"
+msgstr "Normalement"
+
+msgid "configuration_ouvert"
+msgstr "Ouvert"
+
+msgid "configuration_ferme"
+msgstr "Ferme"
+
+msgid "configuration_tempsreel"
+msgstr "Temps réel"
+
+msgid "configuration_surdeplacement"
+msgstr "sur Déplacement"
+
+msgid "configuration_survibration"
+msgstr "sur Vibration"
+
+msgid "configuration_survitesse"
+msgstr "sur Vitesse"
+
+msgid "configuration_seuildebat"
+msgstr "Seuil de BAT"
+
+msgid "configuration_messageapparition"
+msgstr "Message Apparition"
+
+msgid "configuration_messagedisparition"
+msgstr "Message Disparition"
+
+msgid "configuration_alertedesactivee"
+msgstr "Alerte désactivée"
+
+msgid "configuration_alerteactivee"
+msgstr "Alerte activée"
+
+msgid "configuration_telephone"
+msgstr "Téléphone"
+
+msgid "configuration_aucuntelvalide"
+msgstr "Vous n'avez validé aucun numéro de téléphone"
+
+msgid "configuration_choisiralerte"
+msgstr "Veuillez choisir le type d'alerte"
+
+msgid "configuration_infostelephone"
+msgstr "Ces numéros sont utilisés par l'ensemble des alarmes de la balise"
+
+msgid "configuration_confirmnumerotelephone"
+msgstr "Voulez-vous vraiment modifier les numéros de téléphones ?"
+
+msgid "configuration_attentionparamrapatriement"
+msgstr "ATTENTION ! Ces paramètres seront transmis au prochain rapatriement de positions de la balise."
+
+msgid "configuration_bienenregistreparam"
+msgstr "Vous avez bien enregistré les paramètres pour la balise : "
+
+msgid "configuration_confirmmodifiermodedefonctionnement"
+msgstr "Voulez-vous vraiment modifier le mode de fonctionnement de la balise ?"
+
+msgid "configuration_confirmmodifiertempsreel"
+msgstr "Voulez-vous vraiment modifier la configuration temps réel de la balise ?"
+
+msgid "configuration_confirmetattempsreel"
+msgstr "Voulez-vous vraiment activer/désactiver le temps réel de la balise ?"
+
+msgid "configuration_confirmemodifierdetectionbalise"
+msgstr "Voulez-vous vraiment modifier les paramètres de détection de déplacement de la balise ?"
+
+msgid "configuration_confirmemodifieralertebalise"
+msgstr "Voulez-vous vraiment modifier les alertes de la balise ?"
+
+msgid "configuration_modalecontenu1_parambalise"
+msgstr "permet de demander à la balise d'envoyer l'ensemble de ses paramètres de fonctionnement et d'alarme afin de les afficher dans ce panneau de configuration"
+
+msgid "configuration_modalecontenu2_parambalise"
+msgstr "Quand la balise a répondu à cette demande, l'heure de synchronisation prend l'heure de la réponse effectée par la balise et les paramètres affichés dans ce panneau sont mis à jours avec les valeurs retournées."
+
+msgid "configuration_modalecontenu1_dernieresynchro"
+msgstr "A l'ouverture du panneau, la configuration affichée est celle connue à la date et l'heure de synchronisation affichée."
+
+msgid "configuration_modalecontenu2_dernieresynchro"
+msgstr "Il peut y avoir des modifications en attente d'envoi vers la balise, on peut les consulter en cliquant sur le bouton \"Fichier log\" (lignes où la date d'envoi est vierge)"
+
+msgid "configuration_modalecontenu1_fichierlog"
+msgstr "Permet de consulter les commandes ou les paramètres envoyés."
+
+msgid "configuration_modalecontenu2_fichierlog"
+msgstr "Les lignes où la date d'envoi n'est pas renseignée indique que le paramètre correspondant est en attente d'envoi à la balise"
+
+msgid "configuration_modalecontenu1_modedefctmnt"
+msgstr ""
+"La balise peut fonctionner suivant trois modes :<br>"
+"<br>"
+"<b>Mode normal :</b><br>"
+"Ce mode permet de faire un suivi distant ou rapproché de la balise suivant les temps programmés.<br>"
+"<br>"
+"- l'acquisition des positions : s'effectue suivant les temps renseignés pour les trajets et les arrêts.<br>"
+"- le rapatriement des positions : s'effectue suivant les temps renseignés pour les trajets et les arrêts.<br>"
+"<br>"
+"<U>Remarque</U> : le GSM peut fonctionner au choix suivant trois modes :<br>"
+"- Permanent : le GSM est maintenu allumé en permanence.<br>"
+"- Eco : en trajet le GSM est allumé. A l'arrêt il est éteint, il s'allume que pour les transmissions de positions ou de SMS d'alarmes.<br>"
+"- Eco+ : le GSM ne s'allume qu'au moment de transmettre des positions ou un SMS d'alarme, ce paramètre n'est à utiliser que si le temps entre deux envois pendant les trajets est suffisamment long (supérieur ou égal à 5 minutes). Ce mode n'est disponible que pour certaines balises<br>"
+"<br>"
+"<br>"
+"<b>Mode historique</b><br>"
+"Permet d'avoir le détail des trajets sans remontée immédiate afin d'économiser l'autonomie de la batterie.<br>"
+"<br>"
+"- l'acquisition des positions : s'effectue suivant les temps renseignés pour les trajets et les arrêts.<br>"
+"- le rapatriement des positions : s'effectue suivant le timing sans être influencé par les arrêts et les trajets.<br>"
+"<br>"
+"<U>Remarque</U> : le GSM ne se connecte qu'aux moments des envois de positions programmés ou de SMS d'alarmes.<br>"
+"<br>"
+"<br>"
+"<b>Mode périscope</b><br>"
+"Permet un fonctionnement dit \"périscope\" dans lequel les prises et remontées de points peuvent être très espacées. Ce mode est utilisable par exemple quand un véhicule n'a plus besoin d'être surveillé pour préserver l'autonomie.<br>"
+"<br>"
+"- l'acquisition des positions : s'effectue suivant le timing sans être influencé par les arrêts et les trajets.<br>"
+"- le rapatriement des positions : s'effectue suivant le timing sans être influencé par les arrêts et les trajets.<br>"
+"<br>"
+"<U>Remarques</U> :<br>"
+"- le GSM ne se connecte qu'aux moments des envois de positions ou de SMS d'alarmes.<br>"
+"- la balise ne peut recevoir de nouvelles données de programmation qu'au moment des transmissions de positions."
+
+# Mode vitesse
+msgid "modevitesse"
+msgstr "Mode vitesse"
+
+msgid "modevitesse_activer"
+msgstr "Activer :"
+
+msgid "configuration_modalecontenu_modevitesse"
+msgstr "Le mode vitesse permet d'optimiser les consommations d'énergie en diminuant l'envoi des positions."
+
+# Temps reel
+msgid "configuration_modalecontenu1_tempsreel"
+msgstr "Définit les paramètres du mode temps réel. Le mode temps réel permet d'avoir une position toutes les deux secondes avec une remontée immédiate de la position. "
+
+msgid "configuration_modalecontenu2_tempsreel"
+msgstr "Lorsque le temps réel est actif, les temps d'acquisition et de rapatriement définis ne sont plus respectés sauf si la balise vient à être déconnectée du serveur."
+
+msgid "configuration_modalecontenu3_tempsreel"
+msgstr "Lorsqu'elle retrouve sa connexion le temps réel reprend."
+
+msgid "configuration_modalecontenu4_tempsreel"
+msgstr "Le temps réel est à utiliser de façon nécessaire. Le grand nombre d'envois de positions consomme d'avantage d'énergie et de forfait GPRS."
+
+msgid "configuration_modalecontenu1_tempsreelimmediat"
+msgstr "Ceci est une commande pour placer la balise en temps réel pour la durée indiquée en minutes. Une fois cette durée terminée la balise revient à son fonctionnement normal."
+
+msgid "configuration_modalecontenu2_tempsreelimmediat"
+msgstr "Cette commande permet d'avoir plus de positions de façon ponctuelle. Avant l'envoi de cette commande s'assurer que la balise remonte bien des positions à ce moment. "
+
+msgid "configuration_modalecontenu3_tempsreelimmediat"
+msgstr "L'envoi d'une commande de temps réel avec comme durée 0 mn est possible.Il permet de stopper une durée de temps réel lancée précédemment par cette même commande ou par appel téléphonique."
+
+msgid "configuration_modalectitle_tempsreelsurappel"
+msgstr "Temps réel sur appel"
+
+msgid "configuration_modalecontenu1_tempsreelsurappel"
+msgstr "Durée de temps réel effectuée après réception d'un appel téléphonique. Une fois cette durée terminée, la balise reprend son fonctionnement normal."
+
+msgid "configuration_modalecontenu2_tempsreelsurappel"
+msgstr "L'envoi d'un paramètre de temps réel sur appel avec comme durée 0 min est possible. Il permet de ne jamais mettre la balise en temps réel lors d'un appel vers son numéro de téléphone."
+
+msgid "configuration_modalectitle_tempsreelaudemarrage"
+msgstr "Temps réel au démarrage de la balise"
+
+msgid "configuration_modalecontenu1_tempsreelaudemarrage"
+msgstr "Durée de temps réel effectuée juste après la mise sous tension de la balise. Une fois cette durée terminée, la balise prend son fonctionnement normal."
+
+msgid "configuration_modalecontenu2_tempsreelaudemarrage"
+msgstr "L'envoi d'un paramètre de temps réel au démarrage avec comme durée 0 sec est possible. Il permet que la balise ne se mette pas en temps réel lors de sa mise en fonctionnement."
+
+msgid "configuration_modalectitle_tempsreelsurdeplacement"
+msgstr "Temps réel sur déplacement"
+
+msgid "configuration_modalecontenu1_tempsreelsurdeplacement"
+msgstr "Si \"Activé\" (case cochée) la balise fonctionnera en temps réel pendant chacun de ses déplacements."
+
+msgid "configuration_modalecontenu2_tempsreelsurdeplacement"
+msgstr "Pendant tous ses temps de stationnement, elle suit ses temps d'enregistrement programmés"
+
+msgid "configuration_modalecontenu3_tempsreelsurdeplacement"
+msgstr "Le temps réel sur déplacement est automatiquement désactivé sur demande d'un mode historique ou d'un mode périscope"
+
+msgid "configuration_modalectitle_deplacementarret"
+msgstr "Détection déplacement / arrêt"
+
+msgid "configuration_modalecontenu1_deplacementarret"
+msgstr "Ces paramètres permettent de définir comment un véhicule est considéré à l'état \"en déplacement\" ou \"stationné\". "
+
+msgid "configuration_modalecontenu2_deplacementarret"
+msgstr "Cet état est utilisé, d'une part, par d'autres paramètres de la balise et, d'autre part, par Geofence pour afficher l'état \"STOP\" ou trajet."
+
+msgid "configuration_modalecontenu3_deplacementarret"
+msgstr "Détection Déplacement: Temps de vibrations (ou seuil de vitesse) nécessaire pour passer de l'état \"stationné\" à l'état \"déplacement\"."
+
+msgid "configuration_modalecontenu4_deplacementarret"
+msgstr "Détection Arrêt: Temps d'absence de vibrations nécessaire pour passer de l'état \"déplacement\" à l'état \"stationné\"."
+
+msgid "configuration_modalecontenu5_deplacementarret"
+msgstr "Les paramètres ci-dessous (initialement 5 km/h, 30 sec et 1mn30) sont ceux par défaut et sont optimum pour l'utilisation de la balise. Ils n'ont donc pas besoin d'être modifiés."
+
+msgid "configuration_modalecontenu1_alerttype"
+msgstr "Alarme Contact : avertit des départs et/ou des arrêts du véhicule."
+
+msgid "configuration_modalecontenu2_alerttype"
+msgstr "Configure sur quels événements l'alarme parking se déclenche."
+
+msgid "configuration_modalecontenu3_alerttype"
+msgstr "Cette alarme est destinée à surveiller un véhicule en stationnement. Elle peut être déclenchée sur vibrations et/ou sur vitesse (et/ou sur déplacement).\t"
+
+msgid "configuration_modalecontenu4_alerttype"
+msgstr "Alarme Batterie Externe : avertit de la perte de l'alimentation externe (seulement sur balises avec batterie interne)"
+
+msgid "configuration_modalectitle_fichierlog"
+msgstr "Fichier log de paramétrage"
+
+msgid "configuration_modaleccontenu_fichierlog"
+msgstr "Pour utiliser l'alarme, cocher la case. Si l'alarme n'est plus utilisée, décocher la case"
+
+msgid "configuration_modaleccontenu1_filtrage"
+msgstr "Temps en minutes pendant lequel, après un premier déclenchement d'alarme, un nouveau déclenchement de cette même alarme ne provoquera pas de SMS."
+
+msgid "configuration_modaleccontenu2_filtrage"
+msgstr "Minimum 5 minutes pour les balises SC300 et 0 minutes pour les balises SC400. Ne pas mettre un temps trop long.\t"
+
+msgid "configuration_modalectitle_messagealerte"
+msgstr "Message d'alerte"
+
+msgid "configuration_modaleccontenu_messagealerte"
+msgstr "Personnaliser le message d'alerte d'apparition (30 caractères max) et/ou personnaliser le message d'alerte de disparition (30 caractères max)"
+
+msgid "configuration_modalectitle_telephonesms"
+msgstr "Téléphone SMS"
+
+msgid "configuration_modaleccontenu1_telephonesms"
+msgstr "Permet de renseigner les 4 numéros de téléphone vers lesquels la balise enverra les SMS des différentes alarmes."
+
+msgid "configuration_modaleccontenu2_telephonesms"
+msgstr "Toute modification effectuée dans les champs ci-dessous entrainera une modification des destinataires pour l'ensemble des alarmes."
+
+msgid "configuration_modaleccontenu3_telephonesms"
+msgstr "L'utilisation ou non d'un numéro renseigné se fait au niveau de chaque alarme (case cochée/décochée au niveau de réglage de chaque alarme)."
+
+msgid "configuration_modaleccontenu4_telephonesms"
+msgstr "Le format international peut être employé. Au moins un numéro doit être renseigné pour pouvoir utiliser les alarmes.ne attention toute particulière doit être portée au fait que les numéros renseignés doivent être valides."
+
+#: ////////////////////////////////// option
+msgid "option_changementgroupe"
+msgstr "Changement du nom du groupe de balises"
+
+msgid "option_changementbalise"
+msgstr "Changement du nom de la balise"
+
+msgid "option_changementnumero"
+msgstr "Changement du numéro de la balise"
+
+msgid "option_changementlangue"
+msgstr "Changement de la langue de l'interface"
+
+msgid "option_changementicone"
+msgstr "Personnaliser l'icone de la balise"
+
+msgid "option_changementbdd"
+msgstr "Changement de la base de données"
+
+msgid "option_gerer"
+msgstr "Gérer"
+
+msgid "option_droit_option"
+msgstr "Droit de modifier l'icone et le nom des balises et des groupes"
+
+msgid "option_choisiricone"
+msgstr "Choisir icone"
+
+msgid "option_groupeutilisateur"
+msgstr "Groupe(s) de balise(s) "
+
+msgid "option_creergroupe"
+msgstr "Creer un groupe"
+
+msgid "option_modifiergroupe"
+msgstr "Modifier le groupe"
+
+msgid "option_supprimergroupe"
+msgstr "Supprimer le groupe"
+
+msgid "option_compteutilisateur"
+msgstr "Compte(s) utilisateur(s) "
+
+msgid "option_creercompte"
+msgstr "Creation de compte"
+
+msgid "option_modifiercompte"
+msgstr "Modifier le compte"
+
+msgid "option_supprimercompte"
+msgstr "Supprimer le compte"
+
+msgid "option_fichegroupe"
+msgstr "Fiche groupe"
+
+msgid "option_baliseexistante"
+msgstr "Balises existantes"
+
+msgid "option_baliseassocgroupe"
+msgstr "Balises associées au groupe"
+
+msgid "option_idgroupe"
+msgstr "ID groupe"
+
+msgid "option_nomgroupe"
+msgstr "Nom du groupe"
+
+msgid "option_ficheutilisateur"
+msgstr "Fiche Utilisateur"
+
+msgid "option_saisirinfos"
+msgstr "Saisissez les informations de l'utilisateur"
+
+msgid "option_duree"
+msgstr "Durée"
+
+msgid "option_finvalidite"
+msgstr "Fin Validité"
+
+msgid "option_nom"
+msgstr "Nom"
+
+msgid "option_prenom"
+msgstr "Prénom"
+
+msgid "option_saisirmdp"
+msgstr "Saisir le mot de passe ultérieurement"
+
+msgid "option_choisirdureecompte"
+msgstr "Choisissez la durée de compte (validité)"
+
+msgid "option_illimite"
+msgstr "Illimité"
+
+msgid "option_envoyercomptemail"
+msgstr "Envoyer ce compte à l'email"
+
+msgid "option_selectmodifiergroupebaliseassoc"
+msgstr "Sélectionnez (ou modifiez) les groupes de balises associées"
+
+msgid "option_groupeexistant"
+msgstr "Groupes de balises existantes"
+
+msgid "option_groupeassoccompte"
+msgstr "Groupes associés au compte"
+
+msgid "option_choixconfigweb"
+msgstr "Choix Configuration Web"
+
+msgid "option_cliquericone"
+msgstr "Cliquer sur l'icone souhaitée:"
+
+msgid "option_iconeactuel"
+msgstr "Mon icone actuel"
+
+msgid "option_alert_aucunebaliseajoutee"
+msgstr "Aucune balise n'a été ajoutée au groupe"
+
+msgid "option_alert_veuillezajouteraumoinsunebalise"
+msgstr "Veuillez ajouter au moins une balise à ce groupe"
+
+msgid "option_alert_veuillezsaisirnomgroupe"
+msgstr "Veuillez saisir le nom du groupe"
+
+msgid "option_alert_veuillezajouteraumoinsungroupe"
+msgstr "Veuillez ajouter au moins un groupe de balises"
+
+msgid "option_alert_veuillezajouteraumoinsuneduree"
+msgstr "Veuillez selectionner au moins une durée"
+
+msgid "option_alert_veuillezselectionneruneduree"
+msgstr "Veuillez selectionner un type du durée (heure, jour etc..)"
+
+msgid "option_alert_veuillezsaisiruneconfig"
+msgstr "Veuillez selectionner une configuration"
+
+msgid "option_alert_veuillezsaisirunmdp"
+msgstr "Veuillez saisir un mot de passe"
+
+msgid "option_alert_veuillezsaisirunlogin"
+msgstr "Veuillez saisir un login"
+
+msgid "option_alert_veuillezselectionnercompte"
+msgstr "Veuillez selectionner un compte"
+
+msgid "option_alert_modifier"
+msgstr "a été modifié"
+
+msgid "option_alert_nomgroupeexistedeja"
+msgstr "Ce nom de groupe existe déja"
+
+msgid "option_alert_nouveaugroupecreer"
+msgstr "Vous avez bien créé le nouveau groupe"
+
+msgid "option_alert_nomcompteexistedeja"
+msgstr "Ce nom de compte (login) existe déja"
+
+msgid "option_alert_nouveaucomptecreer"
+msgstr "Vous avez bien créé le nouveau compte"
+
+msgid "option_confirm_changernombalise"
+msgstr "Voulez-vous vraiment changer le nom de la balise"
+
+msgid "option_confirm_changernumerobalise"
+msgstr "Voulez-vous vraiment changer le numero de la balise"
+
+msgid "option_confirm_changernomgroupe"
+msgstr "Voulez-vous vraiment changer le nom du groupe"
+
+msgid "option_confirm_warningmultiplebalises"
+msgstr "ATTENTION : Cette icone sera enregistrée pour toutes les balises selectionnées:"
+
+msgid "option_confirm_enregistrericone"
+msgstr "Voulez-vous vraiment enregistrer cette icone pour"
+
+msgid "option_confirm_supprimergroupe"
+msgstr "Voulez-vous vraiment suppprimer le groupe"
+
+msgid "option_confirm_supprimercompte"
+msgstr "Voulez-vous vraiment suppprimer le compte"
+
+msgid "confidentialite_balise"
+msgstr "Confidentialité de la balise"
+
+msgid "afficher"
+msgstr "Afficher"
+
+msgid "jour_valide"
+msgstr "Jours valides"
+
+msgid "confidentialite_ok"
+msgstr "Vous avez bien changé la confidentialité"
+
+msgid "privacy_info1"
+msgstr ""
+"Pour protéger la vie privée des utilisateurs, la géolocalisation d'une balise peut être désactivée sur des périodes précises.<br>"
+"<br>"
+"Pour définir ces périodes:<br>"
+"- Choisir une balise<br>"
+"- Cliquer sur <b>Afficher</b><br>"
+"- Renseigner les horaires souhaités (début et fin)<br>"
+"- Cocher les jours souhaités<br>"
+"- Cliquer sur <b>Valider</b><br>"
+"<br>"
+"PS: Il est à noter que la confidentialité agit sur les suivis, les historiques et les rapports de positions."
+
+msgid "historique_connexion"
+msgstr "Historique des connexions: "
+
+msgid "historique_connexion_utilisateur"
+msgstr "Utilisateur"
+
+msgid "historique_connexion_date"
+msgstr "Date"
+
+msgid "historique_connexion_hour"
+msgstr "Heure"
+
+msgid "historique_connexion_IP"
+msgstr "Adresse IP"
+
+#: ////////////////////////////////// autres
+msgid "balise"
+msgstr "Balise"
+
+msgid "veuillezchoisirungroupe"
+msgstr "Veuillez choisir un groupe"
+
+msgid "veuillezchoisirunclientprecis"
+msgstr "Veuillez choisir un client precis"
+
+msgid "veuillezchoisiruneicone"
+msgstr "Veuillez choisir une icone"
+
+msgid "veuillezchoisirunebalise"
+msgstr "Veuillez choisir une balise"
+
+msgid "veuillezchoisirqueunebalise"
+msgstr "Veuillez choisir qu'une balise"
+
+msgid "veuillezsaisiruneadresse"
+msgstr "Veuillez saisir une adresse"
+
+msgid "veuillezsaisirunnumtel"
+msgstr "Vous n'avez pas saisi un numéro de téléphone valide"
+
+msgid "pas_debut"
+msgstr "Pas de DEBUT time"
+
+msgid "pas_fin"
+msgstr "Pas de FIN time"
+
+msgid "ouvrir"
+msgstr "Ouvrir"
+
+msgid "fermer"
+msgstr "Fermer"
+
+msgid "valider"
+msgstr "Valider"
+
+msgid "inconnue"
+msgstr "Inconnue"
+
+msgid "aucune"
+msgstr "Aucune"
+
+msgid "non"
+msgstr "non"
+
+msgid "pas"
+msgstr "Pas"
+
+msgid "trouve"
+msgstr "trouvé"
+
+msgid "brouille"
+msgstr "brouillé"
+
+msgid "nonbrouille"
+msgstr "non brouillé"
+
+msgid "depuis"
+msgstr "Depuis"
+
+msgid "alimext"
+msgstr "AlimExt"
+
+msgid "alimbasse"
+msgstr "AlimBasse"
+
+msgid "alim"
+msgstr "Alim"
+
+msgid "statut"
+msgstr "Statut"
+
+msgid "numeroappel"
+msgstr "N° d'appel"
+
+msgid "dernieresynchro"
+msgstr "Dernière synchronisation"
+
+msgid "modefonctionnement"
+msgstr "Mode de fonctionnement"
+
+msgid "acquisitionpos"
+msgstr "Acquisition des Pos (GPS)"
+
+msgid "rapatriementpos"
+msgstr "Rapatriement des Pos"
+
+msgid "entrajet"
+msgstr "En trajet"
+
+msgid "enveille"
+msgstr "En veille"
+
+msgid "tempsreelsurappel"
+msgstr "Temps réel sur appel est activé pour une durée de"
+
+msgid "alarmesactivees"
+msgstr "Alarmes activées"
+
+msgid "historique"
+msgstr "Historique"
+
+msgid "silencieux"
+msgstr "Silencieux"
+
+msgid "cartographie"
+msgstr "Cartographie"
+
+msgid "vuerapprochee"
+msgstr "Vue Rapprochée"
+
+msgid "periode"
+msgstr "Periodes"
+
+msgid "debut"
+msgstr "Debut"
+
+msgid "heure"
+msgstr "Heure"
+
+msgid "fin"
+msgstr "Fin"
+
+msgid "jour"
+msgstr "Jour"
+
+msgid "semaine"
+msgstr "Semaine"
+
+msgid "mois"
+msgstr "Mois"
+
+msgid "lundi"
+msgstr "Lundi"
+
+msgid "mardi"
+msgstr "Mardi"
+
+msgid "mercredi"
+msgstr "Mercredi"
+
+msgid "jeudi"
+msgstr "Jeudi"
+
+msgid "vendredi"
+msgstr "Vendredi"
+
+msgid "samedi"
+msgstr "Samedi"
+
+msgid "dimanche"
+msgstr "Dimanche"
+
+msgid "aujourdhui"
+msgstr "Aujourd'hui"
+
+msgid "hier"
+msgstr "Hier"
+
+msgid "semaineflottante"
+msgstr "Semaine flottante"
+
+msgid "moisflottant"
+msgstr "Mois flottant"
+
+msgid "anneeflottante"
+msgstr "Année flottante"
+
+msgid "recherche"
+msgstr "Recherche"
+
+msgid "filtrerlessarrets"
+msgstr "Filtrer les arrêts"
+
+msgid "distancefiltree"
+msgstr "Distance filtrée"
+
+msgid "avant"
+msgstr "avant"
+
+msgid "apres"
+msgstr "apres"
+
+msgid "dernierespositions"
+msgstr "dernieres positions"
+
+msgid "idbalise"
+msgstr "Id Balise"
+
+msgid "nombalise"
+msgstr "Nom Balise"
+
+msgid "adresse"
+msgstr "Détails"
+
+msgid "vitesse"
+msgstr "Vitesse"
+
+msgid "agrandir"
+msgstr "Agrandir"
+
+msgid "reduire"
+msgstr "Réduire"
+
+msgid "routesmajeur"
+msgstr "Routes majeurs"
+
+msgid "chargerlesadresses"
+msgstr "Charger les adresses"
+
+msgid "finsuperieurdebut"
+msgstr "La date de fin doit être postérieure à la date de début"
+
+msgid "veuillezsaisirnombreentre"
+msgstr "Veuillez saisir un nombre de positions entre 1 et 9999"
+
+msgid "pasdepositions"
+msgstr "Pas de positions trouvées"
+
+msgid "creer"
+msgstr "Créer"
+
+msgid "modifier"
+msgstr "Modifier"
+
+msgid "annuler"
+msgstr "Annuler"
+
+msgid "messageactive"
+msgstr "Message activ&eacute"
+
+msgid "messagedesactive"
+msgstr "Message désactiv&eacute"
+
+msgid "transmettresmsnumeros"
+msgstr "Transmettre un SMS aux numéros lors de"
+
+msgid "apparition"
+msgstr "Apparition"
+
+msgid "disparition"
+msgstr "Disparition"
+
+msgid "numero"
+msgstr "Numéro"
+
+msgid "alert_tel1pasenregistrer"
+msgstr "Téléphone N°1 n'est pas encore enregistré"
+
+msgid "alert_tel2pasenregistrer"
+msgstr "Téléphone N°2 n'est pas encore enregistré"
+
+msgid "alert_tel3pasenregistrer"
+msgstr "Téléphone N°3 n'est pas encore enregistré"
+
+msgid "alert_tel4pasenregistrer"
+msgstr "Téléphone N°4 n'est pas encore enregistré"
+
+msgid "alert_pasdelog"
+msgstr "Il n'y a pas de logs"
+
+msgid "remarques"
+msgstr "Remarques"
+
+msgid "historiqueparametrage"
+msgstr "Historique de paramétrage - Balise"
+
+msgid "dateenregistrement"
+msgstr "Date d'enregistrement"
+
+msgid "dateenvoi"
+msgstr "Date d'envoi"
+
+msgid "j"
+msgstr "j"
+
+msgid "confirmdeconnexion"
+msgstr "Voulez-vous vraiment quitter l'application?"
+
+msgid "selectionnerbalise"
+msgstr "selectionner une balise"
+
+msgid "selectionnergroupe"
+msgstr "selectionner un groupe"
+
+msgid "votreposition"
+msgstr "Votre position"
+
+msgid "icone"
+msgstr "Icone"
+
+msgid "choixbalise"
+msgstr "Choix de balises"
+
+msgid "legende"
+msgstr "Légende"
+
+msgid "faible"
+msgstr "Faible"
+
+msgid "externe"
+msgstr "Externe"
+
+msgid "tempsreelsurdeplacemeentestactive"
+msgstr "Temps réel sur déplacement est activé"
+
+msgid "infobulle"
+msgstr "Infobulle"
+
+msgid "rien"
+msgstr "Rien"
+
+msgid "souvenirdemoi"
+msgstr "Se souvenir de moi"
+
+msgid "telechargementnotice"
+msgstr "Téléchargement de la notice"
+
+msgid "centrerzoom"
+msgstr "Zoomer et Centrer"

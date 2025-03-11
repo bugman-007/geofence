@@ -1,0 +1,155 @@
+<?php
+
+	/*
+	* Affiche rencontre balise
+	*
+	*/
+session_start();
+$_SESSION['CREATED'] = time();
+require_once ("../../../lib/php-gettext-1.0.12/gettext.inc");
+$locale = "fr_FR";
+if (isset($_SESSION["language"])) {
+	$locale = $_SESSION['language'];
+}else{
+	$_SESSION['language'] = "fr_FR";
+	$locale = "fr_FR";
+}
+T_setlocale(LC_MESSAGES, $locale);
+$encoding = "UTF-8";
+$domain = "messages";
+bindtextdomain($domain, '../../../locale');
+bind_textdomain_codeset($domain, $encoding);
+textdomain($domain);
+
+$date = date("Y-m-d");
+$heure = date("H")+2;
+$heures = date($heure.":i:s");
+$dateTime = $date." 00:00:00";
+$localDateTime = new DateTime(null, new DateTimezone('Europe/Berlin'));
+		// echo $localDateTime->format('Y-m-d H:i:s');
+?>
+<div id="radio" class="panel panel-default">
+	<div id="" class="panel-collapse collapse in">
+		<div class="panel-body blue" >
+			<div class="container-fluid" style="overflow:hidden; padding:3px;border-radius:10px 10px 10px 10px;">
+				<div class="panel-body">
+					<div class="modal fade" id="info_rencontrebalise" tabindex="-20" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<br><br><br><br>
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+										<p><b>Param&egrave;tre rencontre balise</b>	</p>
+											Il suffit de choisir une balise dans la liste de gauche sur <b>Liste Balises</b> et de s&eacute;lectionner une autre diff&egrave;rente de la premi&egrave;re
+											dans la liste au centre <b>Balise(s) &agrave; surveiller</b>, puis choisir une distance et un filtrage.<br>
+									</div>
+								</div>
+							</div>
+					</div>
+					<form class="form-horizontal" role="form" style="font-size: 14px;">
+						<div class="form-group">
+							<div class="col-md-12" >
+								&nbsp; &nbsp;<i class="fa fa-sitemap fa-fw"></i>&nbsp;
+									<label class="control-label">Param&egrave;trage rencontre balise<?php //echo _('configuration_parametredetectdeplacementarret'); ?>:
+										<a href="#" data-toggle="modal" data-target="#info_rencontrebalise"><i class="fa fa-info-circle info"></i></a>
+									</label>
+							</div>
+						</div>
+						<div style="border: 0; height: 1px; background: #aaa; background-image: linear-gradient(to right, lightgray, lightgray, lightgray);"></div>
+						<br/>
+					</form>
+					<form class="form-horizontal" role="form">
+						<script>
+							var xnbr, lts, balisefinale, listebalise = $("#ListeBalise").children('ul').children('#id_liste_balise').clone();
+							listebalise = listebalise.text();
+							lts = listebalise.split(")");
+							
+							for (xnbr=0; xnbr<lts.length-1; xnbr++){
+								$("#listbal").append("<a id='balise"+ xnbr +"' class='list-group-item' onclick='getbalise(balise"+ xnbr +"); addsomeclass("+ xnbr +");' style='cursor:pointer;'>"+ lts[xnbr] +") <i id='"+ xnbr +"' style='padding-left:8em;'></i></a>");
+							}
+						</script>
+						<div class="col-md-12">
+							<div class="col-md-3"></div>
+							<div class="col-md-6">
+								<div id="listbal" class="list-group">
+									<a id="titre" class="list-group-item disabled">&nbsp; Balise(s) &agrave; surveiller</a>
+								</div>
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+						
+						<div class="col-md-12">
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								Distance (m&egrave;tre(s)):
+								<select id="dis" class="input-xs" style="width:75px">
+									<option value="100">100 m</option> <option value="250">250 m</option> <option value="500">500 m</option> <option value="1000">1 km</option>
+								</select> 
+							</div>
+							<div class="col-md-4">
+								Filtrage sms (minute(s)):
+								<select id="fil" class="input-xs" style="width:75px">
+									<option value="2">2 min</option> <option value="5">5 min</option> <option value="10">10 min</option> <option value="20">20 min</option>
+								</select>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						
+						<div class="col-md-12"></div>
+						
+						<div class="col-md-12">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="" class="col-md-4 control-label" style="font-weight: normal">&nbsp; Tel 1:</label>
+										<div class="col-md-1">
+											<input id="chk1" class="input-xs" type="checkbox" disabled style="margin-top:6px">
+										</div>
+										<div class="col-md-6">
+											<input id="n1" class="form-control input-xs" type="texte" disabled style="margin-top:6px">
+										</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="" class="col-md-4 control-label" style="font-weight: normal">&nbsp;  Tel 2:</label>
+										<div class="col-md-1">
+											<input id="chk2" class="input-xs" type="checkbox" disabled style="margin-top:6px">
+										</div>
+										<div class="col-md-6">
+											<input id="n2" class="form-control input-xs" type="texte" disabled style="margin-top:6px">
+										</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="" class="col-md-4 control-label" style="font-weight: normal">&nbsp; Tel 3:</label>
+										<div class="col-md-1">
+											<input id="chk3" class="input-xs" type="checkbox" disabled style="margin-top:6px">
+										</div>
+										<div class="col-md-6">
+											<input id="n3" class="form-control input-xs" type="texte" disabled style="margin-top:6px">
+										</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="" class="col-md-4 control-label" style="font-weight: normal">&nbsp; Tel 4:</label>
+										<div class="col-md-1">
+											<input id="chk4" class="input-xs" type="checkbox" disabled style="margin-top:6px">
+										</div>
+										<div class="col-md-6">
+											<input id="n4" class="form-control input-xs" type="texte" disabled style="margin-top:6px">
+										</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="col-md-offset-11">
+								<input type="button" class="btn btn-default btn-xs" onClick="validerencontre()" value="<?php echo _('valider'); ?>">
+							</div>
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>	
+	</div>	
+</div>	

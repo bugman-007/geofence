@@ -1,0 +1,687 @@
+<?php 
+	header( 'content-type: text/html; charset=utf-8' );
+	
+	function calculDistance($x11,$y11,$x22,$y22){
+		$pi = 3.14;
+		$r = 6378000;
+		$d;    
+		$x1 = $x11*$pi/180;
+		$y1 = $y11*$pi/180;
+		$x2 = $x22*$pi/180;
+		$y2 = $y22*$pi/180;
+		
+		$t1 = sin($x1) * sin($x2); 
+		$t2 = cos($x1) * cos($x2);
+		$t3 = cos($y1 - $y2);
+
+		$d = $r * acos($t1+ $t3 * $t2 );
+			
+		return round($d/1000, 1);
+	}
+	include '../ChromePhp.php';
+	include '../function.php';
+	include '../dbconnect2.php';
+	include('../dbtpositions.php');
+
+	$timezone=$_GET["timezone"];	
+	/******** RECUPERER LES VARIABLES VIA AJAX GET *********/
+	$idBaliseRapport=$_GET["idBaliseRapport"];
+	$debutRapport=$_GET['debutRapport'];
+	$finRapport=$_GET['finRapport'];
+	$nomDatabaseGpw=$_GET["nomDatabaseGpw"];
+	$ipDatabaseGpw=$_GET["ipDatabaseGpw"];
+	$dUTC = LocalTimeToGmtTime(date("Y-m-d H:i:s", strtotime($debutRapport)),$timezone);
+	$fUTC = LocalTimeToGmtTime(date("Y-m-d H:i:s", strtotime($finRapport)),$timezone);
+
+	/******** SQL statutEncode *************/
+	$i=0;
+	$cbalise = array();
+	$sql = "";
+	$arrayTpositions = getAllPeriodTpositions($debutRapport,$finRapport);
+
+	if (sizeof($arrayTpositions) > 1 ) {
+		for ($i = 0; $i < sizeof($arrayTpositions); $i++) {
+			$sql .= "SELECT Pos_DateTime_position,Pos_Latitude,Pos_Longitude,Pos_Statut,Pos_Vitesse,Pos_Direction,Pos_Odometre,Pos_Adresse
+				FROM $arrayTpositions[$i] WHERE (Pos_DateTime_position BETWEEN '" . $dUTC . "' AND '" . $fUTC . "' ) AND (Pos_Id_tracker = '" . $idBaliseRapport . "' )
+				ORDER BY Pos_DateTime_position;";
+		}
+	}else{
+		$sql = "SELECT Pos_DateTime_position,Pos_Latitude,Pos_Longitude,Pos_Statut,Pos_Vitesse,Pos_Direction,Pos_Odometre,Pos_Adresse
+							FROM $arrayTpositions[0] WHERE (Pos_DateTime_position BETWEEN '" . $dUTC . "' AND '" . $fUTC . "' ) AND (Pos_Id_tracker = '" . $idBaliseRapport . "' )
+							ORDER BY Pos_DateTime_position";
+	}
+
+	$cbalise = statutEncodeRapport($sql,$arrayTpositions,$db_user_2,$db_pass_2);
+	
+	/**********SQL NOMBRE ETAPE & arrayVitesse****************/
+	$i=0;
+	$nombreEtape = 0;
+	$arrayVitesse = array();
+
+	$connectNombreEtape = mysqli_connect($ipDatabaseGpw,$db_user_2,$db_pass_2,$nomDatabaseGpw);
+
+
+	$Hd1="";
+	$Hf1="";
+	$Hd2="";
+	$Hf2="";
+	$Lundi="";
+	$Mardi="";
+	$Mercredi="";
+	$Jeudi="";
+	$Vendredi="";
+	$Samedi="";
+	$Dimanche="";
+
+	// $connection2=mysqli_connect($ipDatabaseGpw,$db_user_2, $db_pass_2,$nomDatabaseGpw);
+	// $sql2 = "SELECT * FROM tplanning WHERE (Id_tracker = '".$idBaliseRapport."' )";
+	// $result2 = mysqli_query($connection2,$sql2);
+	
+	if (sizeof($arrayTpositions) > 1 ) {
+		if (mysqli_multi_query($connectNombreEtape, $sql)) {
+			do {
+				if ($resultNombreEtape = mysqli_store_result($connectNombreEtape)) {
+					// if(mysqli_num_rows($result2) > 0 ) {
+
+					// 	while ($row2 = mysqli_fetch_array($result2)) {
+					// 		$NbrPlage = $row2['NbrPlage'];
+					// 		$Hd1 = $row2['Hd1'];
+					// 		$Hf1 = $row2['Hf1'];
+					// 		$Hd2 = $row2['Hd2'];
+					// 		$Hf2 = $row2['Hf2'];
+					// 		$Lundi = $row2['Lundi'];
+					// 		$Mardi = $row2['Mardi'];
+					// 		$Mercredi = $row2['Mercredi'];
+					// 		$Jeudi = $row2['Jeudi'];
+					// 		$Vendredi = $row2['Vendredi'];
+					// 		$Samedi = $row2['Samedi'];
+					// 		$Dimanche = $row2['Dimanche'];
+					// 	}
+					// 	while ($rowNombreEtape = mysqli_fetch_array($resultNombreEtape)) {
+					// 		$utc_date = DateTime::createFromFormat(
+					// 				'Y-m-d H:i:s',
+					// 				$rowNombreEtape['Pos_DateTime_position'],
+					// 				new DateTimeZone('UTC')
+					// 		);
+					// 		$local_date = $utc_date;
+					// 		$local_date->setTimeZone(new DateTimeZone($_GET["timezone"]));
+
+					// 		$dateNewDateTime = new DateTime();
+					// 		if ( ( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd1[0].$Hd1[1]),intval($Hd1[2].$Hd1[3]))->format("H:i:s")))
+					// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf1[0].$Hf1[1]),intval($Hf1[2].$Hf1[3]))->format("H:i:s"))	)	 )
+					// 			||	( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd2[0].$Hd2[1]),intval($Hd2[2].$Hd2[3]))->format("H:i:s")))
+					// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf2[0].$Hf2[1]),intval($Hf2[2].$Hf2[3]))->format("H:i:s"))	)	 )  ) {
+
+					// 			if (($Lundi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Monday") ||
+					// 					($Mardi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Tuesday") ||
+					// 					($Mercredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Wednesday") ||
+					// 					($Jeudi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Thursday") ||
+					// 					($Vendredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Friday") ||
+					// 					($Samedi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Saturday") ||
+					// 					($Dimanche == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Sunday")
+					// 			) {
+
+					// 				ini_set('display_errors', 'off');
+					// 				if ($cbalise[$i] != "stop" && ($cbalise[$i + 1] == "stop")) {
+					// 					$nombreEtape++;
+					// 				}
+					// 				$i++;
+					// 			}
+					// 		}
+					// 	}
+					// }else{
+						while ($rowNombreEtape = mysqli_fetch_array($resultNombreEtape)) {
+							ini_set('display_errors', 'off');
+							if ($cbalise[$i] != "stop" && ($cbalise[$i + 1] == "stop"))
+							{
+								$nombreEtape++;
+							}
+							$i++;
+						}
+					// }
+				}
+			} while (mysqli_more_results($connectNombreEtape) && mysqli_next_result($connectNombreEtape));
+		}
+	}else{
+		$resultNombreEtape = mysqli_query($connectNombreEtape,$sql);
+		if( $resultNombreEtape !== false ) {
+			// if(mysqli_num_rows($result2) > 0 ) {
+
+			// 	while ($row2 = mysqli_fetch_array($result2)) {
+			// 		$NbrPlage = $row2['NbrPlage'];
+			// 		$Hd1 = $row2['Hd1'];
+			// 		$Hf1 = $row2['Hf1'];
+			// 		$Hd2 = $row2['Hd2'];
+			// 		$Hf2 = $row2['Hf2'];
+			// 		$Lundi = $row2['Lundi'];
+			// 		$Mardi = $row2['Mardi'];
+			// 		$Mercredi = $row2['Mercredi'];
+			// 		$Jeudi = $row2['Jeudi'];
+			// 		$Vendredi = $row2['Vendredi'];
+			// 		$Samedi = $row2['Samedi'];
+			// 		$Dimanche = $row2['Dimanche'];
+			// 	}
+			// 	while ($rowNombreEtape = mysqli_fetch_array($resultNombreEtape)) {
+			// 		$utc_date = DateTime::createFromFormat(
+			// 				'Y-m-d H:i:s',
+			// 				$rowNombreEtape['Pos_DateTime_position'],
+			// 				new DateTimeZone('UTC')
+			// 		);
+			// 		$local_date = $utc_date;
+			// 		$local_date->setTimeZone(new DateTimeZone($_GET["timezone"]));
+
+			// 		$dateNewDateTime = new DateTime();
+			// 		if ( ( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd1[0].$Hd1[1]),intval($Hd1[2].$Hd1[3]))->format("H:i:s")))
+			// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf1[0].$Hf1[1]),intval($Hf1[2].$Hf1[3]))->format("H:i:s"))	)	 )
+			// 			||	( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd2[0].$Hd2[1]),intval($Hd2[2].$Hd2[3]))->format("H:i:s")))
+			// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf2[0].$Hf2[1]),intval($Hf2[2].$Hf2[3]))->format("H:i:s"))	)	 )  ) {
+
+			// 			if (($Lundi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Monday") ||
+			// 					($Mardi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Tuesday") ||
+			// 					($Mercredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Wednesday") ||
+			// 					($Jeudi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Thursday") ||
+			// 					($Vendredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Friday") ||
+			// 					($Samedi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Saturday") ||
+			// 					($Dimanche == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Sunday")
+			// 			) {
+
+			// 				ini_set('display_errors', 'off');
+			// 				if ($cbalise[$i] != "stop" && ($cbalise[$i + 1] == "stop")) {
+			// 					$nombreEtape++;
+			// 				}
+			// 				$i++;
+			// 			}
+			// 		}
+			// 	}
+			// }else{
+				//ini_set('display_errors', 'off');
+				
+				$MemoStatutSTOP = 1;
+				
+				while ($rowNombreEtape = mysqli_fetch_array($resultNombreEtape))
+				{
+					if($rowNombreEtape['Pos_Statut'] & 0x04)
+						$StatutSTOP = 0;
+					else
+						$StatutSTOP = 1;
+					
+					if( ($MemoStatutSTOP == 0) && ($StatutSTOP == 1) )
+						$nombreEtape++;
+					
+					$MemoStatutSTOP = $StatutSTOP;
+				}
+			// }
+		}
+		mysqli_free_result($resultNombreEtape);
+	}
+	mysqli_close($connectNombreEtape);
+	
+
+	/**********SQL ECHO ETAPE ****************/
+
+	// $vitesseMoyenne = round(array_sum($vitesse)/count($vitesse),2);
+	// $vitesseMax= max($vitesse);
+
+
+   if(sizeof($cbalise)> 0){
+       echo "sizeofcbalise:" . sizeof($cbalise);
+   }
+
+	// $queryFetchArray = function($resultEtape,$cbalise,$nombreEtape,$rowNombreEtape) {
+	//
+	// };
+	
+	
+	$i=0;
+	$v=0;
+	$y=0;
+	$etape = 1;
+	
+	$condition = "";
+	$conditionOk = "";
+	$connectEtape = mysqli_connect($ipDatabaseGpw,$db_user_2,$db_pass_2,$nomDatabaseGpw);
+	
+	if (sizeof($arrayTpositions) > 1 ) {
+		if (mysqli_multi_query($connectEtape, $sql)) {
+			do {
+				if ($resultEtape = mysqli_store_result($connectEtape)) {
+					// if (mysqli_num_rows($result2) > 0) {
+					// 	while($row = mysqli_fetch_array($resultEtape)) {
+					// 		$utc_date = DateTime::createFromFormat(
+					// 				'Y-m-d H:i:s',
+					// 				$row['Pos_DateTime_position'],
+					// 				new DateTimeZone('UTC')
+					// 		);
+					// 		$local_date = $utc_date;
+					// 		$local_date->setTimeZone(new DateTimeZone($timezone));
+					// 		ini_set('display_errors', 'off');
+					// 		$dateNewDateTime = new DateTime();
+					// 		if ( ( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd1[0].$Hd1[1]),intval($Hd1[2].$Hd1[3]))->format("H:i:s")))
+					// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf1[0].$Hf1[1]),intval($Hf1[2].$Hf1[3]))->format("H:i:s"))	)	 )
+					// 			||	( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd2[0].$Hd2[1]),intval($Hd2[2].$Hd2[3]))->format("H:i:s")))
+					// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf2[0].$Hf2[1]),intval($Hf2[2].$Hf2[3]))->format("H:i:s"))	)	 )  ) {
+
+
+					// 			if (($Lundi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Monday") ||
+					// 					($Mardi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Tuesday") ||
+					// 					($Mercredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Wednesday") ||
+					// 					($Jeudi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Thursday") ||
+					// 					($Vendredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Friday") ||
+					// 					($Samedi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Saturday") ||
+					// 					($Dimanche == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Sunday")
+					// 			) {
+					// 				if ($conditionOk == "") {
+					// 					if ((($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop"))
+					// 							|| (($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop"))
+					// 					) {
+					// 						$vitesse[$y][$v] = $row['Pos_Vitesse'];
+					// 						$latDebut = $row["Pos_Latitude"];
+					// 						$lngDebut = $row["Pos_Longitude"];
+
+					// 						// if ($boubou != 0) {
+					// 							// $boubou = 0;
+					// 						// }
+					// 						$v++;
+					// 						$condition = "ok";
+					// 						$conditionOk = "ok";
+
+					// 					}
+					// 				}
+					// 				if ($condition == "ok") {
+					// 					if ((($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop"))
+					// 							|| (($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop"))
+					// 					) {
+					// 						$vitesse[$y][$v] = $rowNombreEtape['Pos_Vitesse'];
+					// 						$v++;
+					// 					}
+					// 					if ((($cbalise[$i] == "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i] == "stop") && ($cbalise[$i + 1] != "stop"))) {
+					// 						$km = calculDistance($latDebut, $lngDebut, $row["Pos_Latitude"], $row["Pos_Longitude"]);
+					// 						$vitesse[$y][$v] = $rowNombreEtape['Pos_Vitesse'];
+					// 						// $boubou = 1;
+											
+					// 						$vitesseMoyenne = round(array_sum($vitesse[$y]) / count($vitesse[$y]), 2);
+					// 						$vitesseMax = max($vitesse[$y]);
+					// 						ChromePhp::log("1:",$vitesseMoyenne,$vitesseMax);
+					// 						echo "NombreEtape:" . $nombreEtape;
+					// 						echo "NumeroEtape:" . $etape;
+					// 						echo "VitesseMax:" . $vitesseMax;
+					// 						echo "VitesseMoy:" . $vitesseMoyenne;
+					// 						echo "Kms:" . $km . "fin&";
+
+					// 						$etape++;
+					// 						$y++;
+					// 						$v = 0;
+					// 						$condition = "";
+					// 						$conditionOk = "";
+					// 					}
+
+					// 				}
+					// 				$i++;
+					// 			}
+					// 		}
+					// 	}
+					// } else {
+						while($row = mysqli_fetch_array($resultEtape)) {
+
+							ini_set('display_errors', 'off');
+							if ($conditionOk == "") {
+								if ((($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop"))
+										|| (($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop"))
+								) {
+									$vitesse[$y][$v] = $row['Pos_Vitesse'];
+									$latDebut = $row["Pos_Latitude"];
+									$lngDebut = $row["Pos_Longitude"];
+
+									// if ($boubou != 0) {
+										// $boubou = 0;
+									// }
+									$v++;
+									$condition = "ok";
+									$conditionOk = "ok";
+
+								}
+							}
+							if ($condition == "ok") {
+								if ((($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop"))
+										|| (($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop"))
+								) {
+									$vitesse[$y][$v] = $rowNombreEtape['Pos_Vitesse'];
+									$v++;
+								}
+								if ((($cbalise[$i] == "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i] == "stop") && ($cbalise[$i + 1] != "stop"))) {
+									$km = calculDistance($latDebut, $lngDebut, $row["Pos_Latitude"], $row["Pos_Longitude"]);
+									$vitesse[$y][$v] = $rowNombreEtape['Pos_Vitesse'];
+									// $boubou = 1;
+
+									$vitesseMoyenne = round(array_sum($vitesse[$y]) / count($vitesse[$y]), 2);
+									$vitesseMax = max($vitesse[$y]);
+									ChromePhp::log("2:",$vitesseMoyenne,$vitesseMax);	
+									echo "NombreEtape:" . $nombreEtape;
+									echo "NumeroEtape:" . $etape;
+									echo "VitesseMax:" . $vitesseMax;
+									echo "VitesseMoy:" . $vitesseMoyenne;
+									echo "Kms:" . $km . "fin&";
+
+									$etape++;
+									$y++;
+									$v = 0;
+									$condition = "";
+									$conditionOk = "";
+								}
+
+							}
+							$i++;
+						}
+					// }
+				}
+			} while (mysqli_more_results($connectEtape) && mysqli_next_result($connectEtape));
+		}
+	}else{
+		$resultEtape = mysqli_query($connectEtape,$sql);
+		if( $resultEtape !== false ) {
+			// if (mysqli_num_rows($result2) > 0) {
+			// 	while($row = mysqli_fetch_array($resultEtape)) {
+			// 		$utc_date = DateTime::createFromFormat(
+			// 				'Y-m-d H:i:s',
+			// 				$row['Pos_DateTime_position'],
+			// 				new DateTimeZone('UTC')
+			// 		);
+			// 		$local_date = $utc_date;
+			// 		$local_date->setTimeZone(new DateTimeZone($timezone));
+			// 		ini_set('display_errors', 'off');
+			// 		$dateNewDateTime = new DateTime();
+			// 		if ( ( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd1[0].$Hd1[1]),intval($Hd1[2].$Hd1[3]))->format("H:i:s")))
+			// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf1[0].$Hf1[1]),intval($Hf1[2].$Hf1[3]))->format("H:i:s"))	)	 )
+			// 			||	( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd2[0].$Hd2[1]),intval($Hd2[2].$Hd2[3]))->format("H:i:s")))
+			// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf2[0].$Hf2[1]),intval($Hf2[2].$Hf2[3]))->format("H:i:s"))	)	 )  ) {
+
+
+			// 			if (($Lundi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Monday") ||
+			// 					($Mardi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Tuesday") ||
+			// 					($Mercredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Wednesday") ||
+			// 					($Jeudi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Thursday") ||
+			// 					($Vendredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Friday") ||
+			// 					($Samedi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Saturday") ||
+			// 					($Dimanche == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Sunday")
+			// 			) {
+			// 				if ($conditionOk == "") {
+			// 					if ((($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop"))
+			// 							|| (($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop"))
+			// 					) {
+			// 						$vitesse[$y][$v] = $row['Pos_Vitesse'];
+			// 						$latDebut = $row["Pos_Latitude"];
+			// 						$lngDebut = $row["Pos_Longitude"];
+
+			// 						$v++;
+			// 						$condition = "ok";
+			// 						$conditionOk = "ok";
+
+			// 					}
+			// 				}
+			// 				if ($condition == "ok") {
+			// 					if ((($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] != "stop"))
+			// 							|| (($cbalise[$i - 1] == "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i - 1] != "stop") && ($cbalise[$i] != "stop") && ($cbalise[$i + 1] == "stop"))
+			// 					) {
+			// 						$vitesse[$y][$v] = $rowNombreEtape['Pos_Vitesse'];
+			// 						$v++;
+			// 					}
+			// 					if ((($cbalise[$i] == "stop") && ($cbalise[$i + 1] == "stop")) || (($cbalise[$i] == "stop") && ($cbalise[$i + 1] != "stop"))) {
+			// 						$km = calculDistance($latDebut, $lngDebut, $row["Pos_Latitude"], $row["Pos_Longitude"]);
+			// 						$vitesse[$y][$v] = $rowNombreEtape['Pos_Vitesse'];
+
+			// 						$vitesseMoyenne = round(array_sum($vitesse[$y]) / count($vitesse[$y]), 2);
+			// 						$vitesseMax = max($vitesse[$y]);
+									
+			// 						echo "NombreEtape:" . $nombreEtape;
+			// 						echo "NumeroEtape:" . $etape;
+			// 						echo "VitesseMax:" . $vitesseMax;
+			// 						echo "VitesseMoy:" . $vitesseMoyenne;
+			// 						echo "Kms:" . $km . "fin&";
+
+			// 						$etape++;
+			// 						$y++;
+			// 						$v = 0;
+			// 						$condition = "";
+			// 						$conditionOk = "";
+			// 					}
+
+			// 				}
+			// 				$i++;
+			// 			}
+			// 		}
+			// 	}
+			// } else {
+				while($row = mysqli_fetch_array($resultEtape))
+				{
+					//ini_set('display_errors', 'off');
+					
+					if ($conditionOk == "")
+					{
+						if ( $row['Pos_Statut'] & 0x00000004 )
+						{
+							$latDebut = $row["Pos_Latitude"];
+							$lngDebut = $row["Pos_Longitude"];
+							
+							$vitesse[$y][$v] = $row['Pos_Vitesse'];
+							$v++;
+							
+							$conditionOk = "ok";
+						}
+					}
+					else
+					{
+						if ( $row['Pos_Statut'] & 0x00000004 )
+						{
+							$vitesse[$y][$v] = $row['Pos_Vitesse'];
+							$v++;
+						}
+						else
+						{
+							$km = calculDistance($latDebut, $lngDebut, $row["Pos_Latitude"], $row["Pos_Longitude"]);
+							//$vitesse[$y][$v] = $row['Pos_Vitesse'];
+
+							$vitesseMoyenne = round(array_sum($vitesse[$y]) / count($vitesse[$y]) );
+							$vitesseMax = round( max($vitesse[$y]) );
+							//ChromePhp::log("4",$vitesseMoyenne,$vitesseMax);
+							echo "NombreEtape:" . $nombreEtape;
+							echo "NumeroEtape:" . $etape;
+							echo "VitesseMax:" . $vitesseMax;
+							echo "VitesseMoy:" . $vitesseMoyenne;
+							echo "Kms:" . $km . "fin&";
+
+							$etape++;
+							$y++;
+							$v = 0;
+							$conditionOk = "";
+						}
+					}
+					$i++;
+				}
+			// }
+		}
+		mysqli_free_result($resultEtape);
+	}
+
+
+	mysqli_close($connectEtape);
+
+
+	/************************************************************************************************
+	 *************************************************************************************************	statutEncode
+	 ************************************************************************************************/
+function statutEncodeRapport($sql,$arrayTpositions,$db_user_2,$db_pass_2){
+
+	$i=0;
+	$cbalise = array();
+	$nomDatabaseGpw=$_GET["nomDatabaseGpw"];
+	$ipDatabaseGpw=$_GET["ipDatabaseGpw"];
+	$connectStatutEncode = mysqli_connect($ipDatabaseGpw,$db_user_2,$db_pass_2,$nomDatabaseGpw);
+
+	$Hd1="";
+	$Hf1="";
+	$Hd2="";
+	$Hf2="";
+	$Lundi="";
+	$Mardi="";
+	$Mercredi="";
+	$Jeudi="";
+	$Vendredi="";
+	$Samedi="";
+	$Dimanche="";
+
+	// $connection2=mysqli_connect($ipDatabaseGpw,$db_user_2, $db_pass_2,$nomDatabaseGpw);
+	// $sql2 = "SELECT * FROM tplanning WHERE (Id_tracker = '" .$_GET["idBaliseRapport"] . "' )";
+	// $result2 = mysqli_query($connection2,$sql2);
+
+	$queryFetchArray = function($cbalise,$rowStatutEncode,$i) {
+
+		$statutRecup = $rowStatutEncode['Pos_Statut'];
+		$statutEncode = array();
+		$puissance = 31;
+		while ($puissance > 0) {
+			if (pow(2, $puissance) > $statutRecup) {
+				array_push($statutEncode, "0");
+			} else {
+				$statutRecup = $statutRecup - pow(2, $puissance);
+				array_push($statutEncode, "1");
+			}
+			$puissance--;
+		}
+		if ($statutEncode[29] == "1") {
+			if ($rowStatutEncode['Pos_Vitesse'] == 0) {
+				$cbalise[$i] = "rouge";
+			}
+			if ($rowStatutEncode['Pos_Vitesse'] <= 10) {
+				$cbalise[$i] = "jaune";
+			}
+			if ($rowStatutEncode['Pos_Vitesse'] > 10) {
+				$cbalise[$i] = "vert";
+			}
+		} else {
+			$cbalise[$i] = "stop";
+		}
+
+		return $cbalise[$i];
+	};
+
+	if (sizeof($arrayTpositions) > 1 ) {
+		$i = 0;
+		if (mysqli_multi_query($connectStatutEncode, $sql)) {
+			do {
+				if ($resultStatutEncode = mysqli_store_result($connectStatutEncode)) {
+
+					// if(mysqli_num_rows($result2) > 0 ) {
+
+					// 	while ($row2 = mysqli_fetch_array($result2)) {
+					// 		$NbrPlage = $row2['NbrPlage'];
+					// 		$Hd1 = $row2['Hd1'];
+					// 		$Hf1 = $row2['Hf1'];
+					// 		$Hd2 = $row2['Hd2'];
+					// 		$Hf2 = $row2['Hf2'];
+					// 		$Lundi = $row2['Lundi'];
+					// 		$Mardi = $row2['Mardi'];
+					// 		$Mercredi = $row2['Mercredi'];
+					// 		$Jeudi = $row2['Jeudi'];
+					// 		$Vendredi = $row2['Vendredi'];
+					// 		$Samedi = $row2['Samedi'];
+					// 		$Dimanche = $row2['Dimanche'];
+					// 	}
+					// 	while($rowStatutEncode = mysqli_fetch_array($resultStatutEncode)) {
+
+					// 		$utc_date = DateTime::createFromFormat(
+					// 				'Y-m-d H:i:s',
+					// 				$rowStatutEncode['Pos_DateTime_position'],
+					// 				new DateTimeZone('UTC')
+					// 		);
+					// 		$local_date = $utc_date;
+					// 		$local_date->setTimeZone(new DateTimeZone($_GET["timezone"]));
+
+					// 		$dateNewDateTime = new DateTime();
+					// 		if ( ( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd1[0].$Hd1[1]),intval($Hd1[2].$Hd1[3]))->format("H:i:s")))
+					// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf1[0].$Hf1[1]),intval($Hf1[2].$Hf1[3]))->format("H:i:s"))	)	 )
+					// 			||	( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd2[0].$Hd2[1]),intval($Hd2[2].$Hd2[3]))->format("H:i:s")))
+					// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf2[0].$Hf2[1]),intval($Hf2[2].$Hf2[3]))->format("H:i:s"))	)	 )  ) {
+
+					// 			if (($Lundi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Monday") ||
+					// 					($Mardi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Tuesday") ||
+					// 					($Mercredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Wednesday") ||
+					// 					($Jeudi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Thursday") ||
+					// 					($Vendredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Friday") ||
+					// 					($Samedi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Saturday") ||
+					// 					($Dimanche == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Sunday")) {
+
+					// 				$cbalise[$i] = $queryFetchArray($cbalise,$rowStatutEncode,$i);
+					// 				$i++;
+					// 			}
+					// 		}
+					// 	}
+					// }else{
+						while($rowStatutEncode = mysqli_fetch_array($resultStatutEncode)){
+							$cbalise[$i] = $queryFetchArray($cbalise,$rowStatutEncode,$i);
+							$i++;
+						}
+					// }
+					mysqli_free_result($resultStatutEncode);
+				}
+			} while (mysqli_more_results($connectStatutEncode) && mysqli_next_result($connectStatutEncode));
+		}
+	}else{
+		$resultStatutEncode = mysqli_query($connectStatutEncode,$sql);
+
+		// if(mysqli_num_rows($result2) > 0 ) {
+
+		// 	while ($row2 = mysqli_fetch_array($result2)) {
+		// 		$NbrPlage = $row2['NbrPlage'];
+		// 		$Hd1 = $row2['Hd1'];
+		// 		$Hf1 = $row2['Hf1'];
+		// 		$Hd2 = $row2['Hd2'];
+		// 		$Hf2 = $row2['Hf2'];
+		// 		$Lundi = $row2['Lundi'];
+		// 		$Mardi = $row2['Mardi'];
+		// 		$Mercredi = $row2['Mercredi'];
+		// 		$Jeudi = $row2['Jeudi'];
+		// 		$Vendredi = $row2['Vendredi'];
+		// 		$Samedi = $row2['Samedi'];
+		// 		$Dimanche = $row2['Dimanche'];
+		// 	}
+		// 	while($rowStatutEncode = mysqli_fetch_array($resultStatutEncode)) {
+
+		// 		$utc_date = DateTime::createFromFormat(
+		// 				'Y-m-d H:i:s',
+		// 				$rowStatutEncode['Pos_DateTime_position'],
+		// 				new DateTimeZone('UTC')
+		// 		);
+		// 		$local_date = $utc_date;
+		// 		$local_date->setTimeZone(new DateTimeZone($_GET["timezone"]));
+
+		// 		$dateNewDateTime = new DateTime();
+		// 		if ( ( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd1[0].$Hd1[1]),intval($Hd1[2].$Hd1[3]))->format("H:i:s")))
+		// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf1[0].$Hf1[1]),intval($Hf1[2].$Hf1[3]))->format("H:i:s"))	)	 )
+		// 			||	( ( ($local_date->format("H:i:s")) >= ($dateNewDateTime->setTime(intval($Hd2[0].$Hd2[1]),intval($Hd2[2].$Hd2[3]))->format("H:i:s")))
+		// 				&& ( ($local_date->format("H:i:s")) <= ($dateNewDateTime->setTime(intval($Hf2[0].$Hf2[1]),intval($Hf2[2].$Hf2[3]))->format("H:i:s"))	)	 )  ) {
+
+		// 			if (($Lundi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Monday") ||
+		// 					($Mardi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Tuesday") ||
+		// 					($Mercredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Wednesday") ||
+		// 					($Jeudi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Thursday") ||
+		// 					($Vendredi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Friday") ||
+		// 					($Samedi == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Saturday") ||
+		// 					($Dimanche == "1" && jddayofweek(gregoriantojd($local_date->format("m"), $local_date->format("d"), $local_date->format("Y")), 1) == "Sunday")) {
+
+		// 				$cbalise[$i] = $queryFetchArray($cbalise,$rowStatutEncode,$i);
+		// 				$i++;
+		// 			}
+		// 		}
+		// 	}
+		// }else{
+			while($rowStatutEncode = mysqli_fetch_array($resultStatutEncode)){
+				$cbalise[$i] = $queryFetchArray($cbalise,$rowStatutEncode,$i);
+				$i++;
+			}
+		// }
+	}
+	mysqli_close($connectStatutEncode);
+	return $cbalise;
+
+}
+?>

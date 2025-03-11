@@ -1,0 +1,461 @@
+<?php
+	include '../function.php';
+	include '../dbconnect2.php';
+
+	$q=$_GET["idTracker"];
+	$d=$_GET["debutRapport"];
+	$f=$_GET["finRapport"];
+	$timezone=$_GET["timezone"];
+	$nomDatabaseGpw=$_GET["nomDatabaseGpw"];
+	$ipDatabaseGpw=$_GET["ipDatabaseGpw"];
+
+	$dUTC = LocalTimeToGmtTime(date("Y-m-d H:i:s", strtotime($d)),$timezone);
+	$fUTC = LocalTimeToGmtTime(date("Y-m-d H:i:s", strtotime($f)),$timezone);;
+
+
+
+	$connection=mysqli_connect($ipDatabaseGpw, $db_user_2, $db_pass_2,$nomDatabaseGpw);
+	include('../dbtpositions.php');
+
+	$sql = "";
+	$arrayTpositions = getAllPeriodTpositions($d,$f);
+	$i=0;
+	$iDureeStop = 0;
+
+	$condition = "";
+	$conditionOk = "";
+	$conditionFirst = "";
+	$firstStopData = "";
+	
+	$data = array();
+
+	$queryFetchArray = function($result,$i,$conditionFirst,$iDureeStop,$conditionOk,$cbalise) {
+
+	};
+	$lengthEtape = 0;
+	if (sizeof($arrayTpositions) > 1 ) {
+		if (mysqli_multi_query($connection, $sql)) {
+			do {
+				if ($result = mysqli_store_result($connection)) {
+					$lengthEtape += mysqli_num_rows($result);
+				}
+			} while (mysqli_more_results($connection) && mysqli_next_result($connection));
+		}
+		for ($i = 0; $i < sizeof($arrayTpositions); $i++) {
+			$sql="SELECT Pos_DateTime_position,Pos_Latitude,Pos_Longitude,Pos_Statut,Pos_Vitesse,Pos_Direction,Pos_Odometre,Pos_Adresse
+							FROM $arrayTpositions[$i] WHERE (Pos_DateTime_position BETWEEN '".$dUTC."' AND '".$fUTC."' ) AND (Pos_Id_tracker = '".$q."' )
+							ORDER BY Pos_DateTime_position ; ";
+		}
+		$cbalise = statutEncodeCouleur($dUTC,$fUTC,$q,$sql,$arrayTpositions,$db_user_2,$db_pass_2);
+		if (mysqli_multi_query($connection, $sql)) {
+			$i=0;
+			do {
+				if ($result = mysqli_store_result($connection)) {
+					while($row = mysqli_fetch_array($result)) {
+						ini_set('display_errors','off');
+						if($conditionFirst == ""){
+							if ( $cbalise[$i] == "stop") {
+								
+								array_push($data,
+									array(
+										"DateTime_Position" => $row['Pos_DateTime_position'],
+										"Latitude" => $row['Pos_Latitude'],
+										"Longitude" => $row['Pos_Longitude'],
+										"Statut" => $row['Pos_Statut'],
+										"Vitesse" => $row['Pos_Vitesse'],
+										"Direction" => $row['Pos_Direction'],
+										"Odometre" => $row['Pos_Odometre'],
+										"Adresse" => $row['Pos_Adresse']
+									)
+								); 
+								
+								$conditionFirst = "ok";
+							}
+						}
+						if ($iDureeStop == 0) {
+							if ($cbalise[$i - 1] != "stop" && $cbalise[$i] == "stop" && $cbalise[$i + 1] == "stop") {
+								
+								array_push($data,
+									array(
+										"DateTime_Position" => $row['Pos_DateTime_position'],
+										"Latitude" => $row['Pos_Latitude'],
+										"Longitude" => $row['Pos_Longitude'],
+										"Statut" => $row['Pos_Statut'],
+										"Vitesse" => $row['Pos_Vitesse'],
+										"Direction" => $row['Pos_Direction'],
+										"Odometre" => $row['Pos_Odometre'],
+										"Adresse" => $row['Pos_Adresse']
+									)
+								); 
+
+								$iDureeStop++;
+							}
+							if ($cbalise[$i - 1] != "stop" && $cbalise[$i] == "stop" && $cbalise[$i + 1] != "stop") {
+
+								array_push($data,
+									array(
+										"DateTime_Position" => $row['Pos_DateTime_position'],
+										"Latitude" => $row['Pos_Latitude'],
+										"Longitude" => $row['Pos_Longitude'],
+										"Statut" => $row['Pos_Statut'],
+										"Vitesse" => $row['Pos_Vitesse'],
+										"Direction" => $row['Pos_Direction'],
+										"Odometre" => $row['Pos_Odometre'],
+										"Adresse" => $row['Pos_Adresse']
+									)
+								); 
+
+								$iDureeStop++;
+
+							}
+						}
+						//		if ($iDureeStop != 0) {
+						if ($conditionOk == "") {
+							if ($cbalise[$i] != "stop" && ($cbalise[$i + 1] != "stop")) {
+								
+								array_push($data,
+									array(
+										"DateTime_Position" => $row['Pos_DateTime_position'],
+										"Latitude" => $row['Pos_Latitude'],
+										"Longitude" => $row['Pos_Longitude'],
+										"Statut" => $row['Pos_Statut'],
+										"Vitesse" => $row['Pos_Vitesse'],
+										"Direction" => $row['Pos_Direction'],
+										"Odometre" => $row['Pos_Odometre'],
+										"Adresse" => $row['Pos_Adresse']
+									)
+								); 
+								
+								$condition = "ok";
+								$conditionOk = "ok";
+							}
+						}
+						if ($condition == "ok") {
+							if ($cbalise[$i] != "stop"/* && ($cbalise[$i + 1] == "stop")*/) {
+								
+								array_push($data,
+									array(
+										"DateTime_Position" => $row['Pos_DateTime_position'],
+										"Latitude" => $row['Pos_Latitude'],
+										"Longitude" => $row['Pos_Longitude'],
+										"Statut" => $row['Pos_Statut'],
+										"Vitesse" => $row['Pos_Vitesse'],
+										"Direction" => $row['Pos_Direction'],
+										"Odometre" => $row['Pos_Odometre'],
+										"Adresse" => $row['Pos_Adresse']
+									)
+								); 
+								
+								$condition = "o";
+								$conditionOk = "";
+								$iDureeStop = "0";
+							}
+						}
+						if($i == $lengthEtape-1) {
+							
+							array_push($data,
+								array(
+									"DateTime_Position" => $row['Pos_DateTime_position'],
+									"Latitude" => $row['Pos_Latitude'],
+									"Longitude" => $row['Pos_Longitude'],
+									"Statut" => $row['Pos_Statut'],
+									"Vitesse" => $row['Pos_Vitesse'],
+									"Direction" => $row['Pos_Direction'],
+									"Odometre" => $row['Pos_Odometre'],
+									"Adresse" => $row['Pos_Adresse']
+								)
+							); 
+							
+							$condition = "o";
+							$conditionOk = "";
+							$iDureeStop = "0";
+						}
+						//		}
+						$i++;
+
+					}
+					mysqli_free_result($result);
+				}
+			} while (mysqli_more_results($connection) && mysqli_next_result($connection));
+		}
+	}else{
+		$sql="SELECT Pos_DateTime_position,Pos_Latitude,Pos_Longitude,Pos_Statut,Pos_Vitesse,Pos_Direction,Pos_Odometre,Pos_Adresse
+							FROM $arrayTpositions[0] WHERE (Pos_DateTime_position BETWEEN '".$dUTC."' AND '".$fUTC."' ) AND (Pos_Id_tracker = '".$q."' )
+							ORDER BY Pos_DateTime_position ; ";
+		$cbalise = statutEncodeCouleur($dUTC,$fUTC,$q,$sql,$arrayTpositions,$db_user_2,$db_pass_2);
+		$result = mysqli_query($connection,$sql);
+		$lengthEtape = mysqli_num_rows($result);
+		if( $result !== false ) {
+			$i=0;
+			while($row = mysqli_fetch_array($result)) {
+				ini_set('display_errors','off');
+				if($conditionFirst == ""){
+					if ( $cbalise[$i] == "stop") {
+						
+						array_push($data,
+							array(
+								"DateTime_Position" => $row['Pos_DateTime_position'],
+								"Latitude" => $row['Pos_Latitude'],
+								"Longitude" => $row['Pos_Longitude'],
+								"Statut" => $row['Pos_Statut'],
+								"Vitesse" => $row['Pos_Vitesse'],
+								"Direction" => $row['Pos_Direction'],
+								"Odometre" => $row['Pos_Odometre'],
+								"Adresse" => $row['Pos_Adresse']
+							)
+						); 
+						
+						$conditionFirst = "ok";
+					}
+				}
+				if ($iDureeStop == 0) {
+					if ($cbalise[$i - 1] != "stop" && $cbalise[$i] == "stop" && $cbalise[$i + 1] == "stop") {
+						
+						array_push($data,
+							array(
+								"DateTime_Position" => $row['Pos_DateTime_position'],
+								"Latitude" => $row['Pos_Latitude'],
+								"Longitude" => $row['Pos_Longitude'],
+								"Statut" => $row['Pos_Statut'],
+								"Vitesse" => $row['Pos_Vitesse'],
+								"Direction" => $row['Pos_Direction'],
+								"Odometre" => $row['Pos_Odometre'],
+								"Adresse" => $row['Pos_Adresse']
+							)
+						); 
+
+						$iDureeStop++;
+					}
+//					if ($cbalise[$i - 1] != "stop" && $cbalise[$i] == "stop" && $cbalise[$i + 1] != "stop") {
+//
+//						//				if($firstStopData == null){
+//						$url = "https://maps.googleapis.com/maps/api/geocode/xml?latlng=" . $row['Pos_Latitude'] . "," . $row['Pos_Longitude'] . "&sensor=false&client=gme-stancomsas";
+//						$firstStopUrlParam = $url;
+//						$firstStopUrl = "https://maps.googleapis.com/maps/api/geocode/xml?";
+//						$firstStopData = "latlng=" . $row['Pos_Latitude'] . "," . $row['Pos_Longitude'] . "&sensor=false";
+//						$firstStopDataSigned = signData($url, 'fOFKm3EqRDQYRgN3Xbey4B4f8ts=');
+//						$firstStopLatitude = $row['Pos_Latitude'];
+//						$firstStopAddress = $row['Pos_Adresse'];
+//						$firstStopDateTimePosition = $row['Pos_DateTime_position'];
+//						$firstStopLongitude = $row['Pos_Longitude'];
+//						//				}
+//						$url = $firstStopUrlParam;
+//						//							echo "t" . $rowCount . "g";
+//						echo "url:".$firstStopUrl;
+//						echo "data:".$firstStopData;
+//						echo "dataSigned:" . $firstStopDataSigned;
+//						echo "Pos_Latitude:" . $firstStopLatitude;
+//						echo "Pos_Adresse:" .$firstStopAddress;
+//						echo "Pos_DateTime_position:" . $firstStopDateTimePosition;
+//						echo "Pos_Longitude: " . $firstStopLongitude . "$";
+//
+//						$iDureeStop++;
+//
+//					}
+				}
+				//		if ($iDureeStop != 0) {
+				if ($conditionOk == "") {
+					if ($cbalise[$i] != "stop" /*&& ($cbalise[$i + 1] != "stop")*/) {
+						
+						array_push($data,
+							array(
+								"DateTime_Position" => $row['Pos_DateTime_position'],
+								"Latitude" => $row['Pos_Latitude'],
+								"Longitude" => $row['Pos_Longitude'],
+								"Statut" => $row['Pos_Statut'],
+								"Vitesse" => $row['Pos_Vitesse'],
+								"Direction" => $row['Pos_Direction'],
+								"Odometre" => $row['Pos_Odometre'],
+								"Adresse" => $row['Pos_Adresse']
+							)
+						); 
+						
+						$condition = "ok";
+						$conditionOk = "ok";
+					}
+				}
+				if ($condition == "ok") {
+					if ($cbalise[$i] != "stop" && ($cbalise[$i + 1] == "stop")) {
+						
+						array_push($data,
+							array(
+								"DateTime_Position" => $row['Pos_DateTime_position'],
+								"Latitude" => $row['Pos_Latitude'],
+								"Longitude" => $row['Pos_Longitude'],
+								"Statut" => $row['Pos_Statut'],
+								"Vitesse" => $row['Pos_Vitesse'],
+								"Direction" => $row['Pos_Direction'],
+								"Odometre" => $row['Pos_Odometre'],
+								"Adresse" => $row['Pos_Adresse']
+							)
+						); 
+						
+						$condition = "o";
+						$conditionOk = "";
+						$iDureeStop = "0";
+					}
+				}
+				if($i == $lengthEtape-1) {
+					
+					array_push($data,
+						array(
+							"DateTime_Position" => $row['Pos_DateTime_position'],
+							"Latitude" => $row['Pos_Latitude'],
+							"Longitude" => $row['Pos_Longitude'],
+							"Statut" => $row['Pos_Statut'],
+							"Vitesse" => $row['Pos_Vitesse'],
+							"Direction" => $row['Pos_Direction'],
+							"Odometre" => $row['Pos_Odometre'],
+							"Adresse" => $row['Pos_Adresse']
+						)
+					); 
+										
+					$condition = "o";
+					$conditionOk = "";
+					$iDureeStop = "0";
+				}
+				//		}
+				$i++;
+
+			}
+		}
+		mysqli_free_result($result);
+	}
+	mysqli_close($connection);
+
+
+
+
+	function encodeBase64UrlSafe($value){
+		return str_replace(array('+', '/'), array('-', '_'), base64_encode($value));
+	}
+
+	function decodeBase64UrlSafe($value){
+		return base64_decode(str_replace(array('-', '_'), array('+', '/'), $value));
+	}
+
+
+	function signUrl($myUrlToSign, $privateKey)	{
+		$url = parse_url($myUrlToSign);
+		$urlPartToSign =  $url['path'] . "?" . $url['query'];
+		$decodedKey = decodeBase64UrlSafe($privateKey);
+		$signature = hash_hmac("sha1",$urlPartToSign, $decodedKey,  true);
+		$encodedSignature = encodeBase64UrlSafe($signature);
+		return $url['path'];
+	}
+
+	function signData($myUrlToSign, $privateKey)	{
+
+		$url = parse_url($myUrlToSign);
+		$urlPartToSign = $url['path'] . "?" . $url['query'];
+		$decodedKey = decodeBase64UrlSafe($privateKey);
+		$signature = hash_hmac("sha1",$urlPartToSign, $decodedKey,  true);
+		$encodedSignature = encodeBase64UrlSafe($signature);
+	//		$encodedSignature1 = str_replace("+","-",$encodedSignature);
+	//		$encodedSignature2 = str_replace("/","_",$encodedSignature1);
+		return $url['query']."&signature=".$encodedSignature;
+	}
+
+	function statutEncodeCouleur($debutRapport,$finRapport,$idBaliseRapport,$sql,$arrayTpositions,$db_user_2,$db_pass_2){
+		ini_set('display_errors','off');
+
+		$i=0;
+		$cbalise = array();
+		$nomDatabaseGpw=$_GET["nomDatabaseGpw"];
+		$ipDatabaseGpw=$_GET["ipDatabaseGpw"];
+
+		$queryFetchArray = function($resultStatutEncode,$i) {
+
+
+		};
+
+		$connectStatutEncode = mysqli_connect($ipDatabaseGpw,$db_user_2,$db_pass_2,$nomDatabaseGpw);
+		if (sizeof($arrayTpositions) > 1 ) {
+			if (mysqli_multi_query($connectStatutEncode, $sql)) {
+				do {
+					if ($resultStatutEncode = mysqli_store_result($connectStatutEncode)) {
+						while($row = mysqli_fetch_array($resultStatutEncode)){
+							$statutRecup = $row['Pos_Statut'];
+							$statutEncode =  array();
+							$puissance = 31;
+							while($puissance>0){
+								if( pow(2,$puissance) > $statutRecup ){
+									array_push($statutEncode,"0");
+								}else{
+									$statutRecup = $statutRecup - pow(2,$puissance);
+									array_push($statutEncode,"1");
+								}
+								$puissance --;
+							}
+							if ($statutEncode[29] == "1"){
+								if($row['Pos_Vitesse'] == 0){
+									$cbalise[$i] = "rouge";
+									$statutSTOP[$i] = "";
+								}
+								if($row['Pos_Vitesse'] <= 10){
+									$cbalise[$i] = "jaune";
+								}
+								if($row['Pos_Vitesse'] > 10){
+									$cbalise[$i] = "vert";
+								}
+							}else {
+								$cbalise[$i] = "stop";
+							}
+							if ($statutEncode[25] == "1"){
+								$vbalise[$i] = "1";
+							}else {
+								$vbalise[$i] = "0";
+							}
+							$i++;
+						}
+						mysqli_free_result($resultStatutEncode);
+					}
+				} while (mysqli_more_results($connectStatutEncode) && mysqli_next_result($connectStatutEncode));
+			}
+		}else{
+			$resultStatutEncode = mysqli_query($connectStatutEncode,$sql);
+			if( $resultStatutEncode !== false ) {
+				while($row = mysqli_fetch_array($resultStatutEncode)){
+					$statutRecup = $row['Pos_Statut'];
+					$statutEncode =  array();
+					$puissance = 31;
+					while($puissance>0){
+						if( pow(2,$puissance) > $statutRecup ){
+							array_push($statutEncode,"0");
+						}else{
+							$statutRecup = $statutRecup - pow(2,$puissance);
+							array_push($statutEncode,"1");
+						}
+						$puissance --;
+					}
+					if ($statutEncode[29] == "1"){
+						if($row['Pos_Vitesse'] == 0){
+							$cbalise[$i] = "rouge";
+							$statutSTOP[$i] = "";
+						}
+						if($row['Pos_Vitesse'] <= 10){
+							$cbalise[$i] = "jaune";
+						}
+						if($row['Pos_Vitesse'] > 10){
+							$cbalise[$i] = "vert";
+						}
+					}else {
+						$cbalise[$i] = "stop";
+					}
+					if ($statutEncode[25] == "1"){
+						$vbalise[$i] = "1";
+					}else {
+						$vbalise[$i] = "0";
+					}
+					$i++;
+				}
+			}
+			mysqli_free_result($resultStatutEncode);
+		}
+
+		mysqli_close($connectStatutEncode);
+		
+		return $cbalise;
+	}
+	print_r(json_encode($data));
+	?>
